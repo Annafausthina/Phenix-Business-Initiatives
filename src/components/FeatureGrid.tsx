@@ -1,6 +1,5 @@
 import { LucideIcon } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
-import { motion } from 'framer-motion';
 
 interface Feature {
   icon: LucideIcon;
@@ -20,23 +19,16 @@ const colsClass = {
 };
 
 const FeatureGrid = ({ features, columns = 3 }: FeatureGridProps) => (
-  <div className={`grid grid-cols-1 gap-6 ${colsClass[columns]}`}>
+  <div className={`grid grid-cols-1 gap-5 ${colsClass[columns]}`}>
     {features.map((f, i) => (
-      <ScrollReveal
-        key={i}
-        delay={i * 0.1}
-        direction={i % 3 === 0 ? 'left' : i % 3 === 1 ? 'up' : 'right'}
-        variant={i}
-      >
-        <div
-          className="group flex flex-col items-start"
-        >
-          <div className="mb-4 inline-flex text-primary">
-            <f.icon className="h-6 w-6" />
+      <ScrollReveal key={i} delay={i * 0.07} direction="up">
+        <div className="group flex flex-col gap-3 p-6 rounded-xl border border-border bg-card hover:border-amber-400/40 hover:bg-amber-400/3 transition-all duration-300">
+          <div className="h-10 w-10 rounded-lg bg-amber-400/10 flex items-center justify-center text-amber-500 group-hover:bg-amber-400/20 transition-colors">
+            <f.icon className="h-5 w-5" />
           </div>
-          <h4 className="mb-2 text-xl font-bold text-foreground">{f.title}</h4>
+          <h4 className="text-sm font-bold text-foreground">{f.title}</h4>
           {f.description && (
-            <p className="text-sm leading-relaxed text-muted-foreground">{f.description}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{f.description}</p>
           )}
         </div>
       </ScrollReveal>

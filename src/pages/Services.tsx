@@ -1,14 +1,14 @@
-import { DollarSign, FileCode, Database, CheckCircle } from 'lucide-react';
-import Hero from '@/components/Hero';
+import { DollarSign, FileCode, Database, CheckCircle, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Section from '@/components/Section';
 import ScrollReveal from '@/components/ScrollReveal';
-import ServiceCard from '@/components/ServiceCard';
 
 const serviceCards = [
   {
     icon: DollarSign,
     title: 'Revenue Cycle Management',
     description: 'We deliver a full range of RCM services to streamline your billing processes and achieve fast and predictable collections. Our services cover the entire lifecycle from patient intake to final payment.',
+    to: '/services',
   },
   {
     icon: FileCode,
@@ -47,76 +47,99 @@ const differentiators = [
 ];
 
 const Services = () => (
-  <>
-    <Hero title="Switch all your back office processes to us and we'll guarantee you'll save money!" />
+  <div className="relative overflow-hidden">
 
-    <Section>
-      <div className="mx-auto max-w-4xl space-y-6">
+    {/* ── Hero ── */}
+    <section className="relative pt-36 pb-24 px-4 bg-[hsl(222,47%,7%)]">
+      <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-400/6 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto text-center">
         <ScrollReveal>
-          <p className="text-muted-foreground leading-relaxed">
-            Our services are designed to deliver value to the organizations that we serve and hence are motivated by the Success we share with our Clients.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.05}>
-          <p className="text-muted-foreground leading-relaxed">
-            PBI offers a portfolio of services designed to maximize the value for partners and clients in their business. We match our services to your precise needs to create the outcomes you want. We help our clients to optimize their organizational, managerial and production processes.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <p className="text-muted-foreground leading-relaxed">
-            As delivery experts, we value agility and so do our customers. We never stop evolving to create brilliantly simple solutions. Our services bring together our local and international expertise – all designed with our customers, and their customers in mind.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.15}>
-          <p className="text-muted-foreground leading-relaxed">
-            Our talented team of professionals operates under an effective system of internal quality management and communication that corresponds to ISO level quality. Our deliverables satisfy the highest international standards. To enhance your experience at PBI, we want to make you feel comfortable and well-prepared when accessing our services.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.2}>
-          <p className="text-muted-foreground leading-relaxed">
-            Our services are designed to support the continued expansion of our Clients and Alliance Partners, particularly in the difficult healthcare market. With organizations becoming increasingly diverse and globally competitive, our mission is to deliver the exceptional service levels using highly qualified professionals they need.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.25}>
-          <p className="text-muted-foreground leading-relaxed">
-            As a professional services firm, we know that value and trust are the main ingredients of a quality relationship — and that they are earned over more than a single engagement. No matter how big, medium or small you are, we can help you work smarter and reach your goals. PBI's wide ranging experience across healthcare/non-healthcare BPO services is grouped into the following services. Have a look at them and let's talk.
+          <span className="tag mb-6 inline-flex">Our Services</span>
+          <h1 className="text-white font-['Syne'] font-extrabold mb-6 max-w-4xl mx-auto">
+            Switch all your back office processes<br className="hidden md:block" /> to us and{' '}
+            <span className="text-gold-shimmer">save money!</span>
+          </h1>
+          <p className="text-white/50 text-xl max-w-2xl mx-auto">
+            Premium BPO solutions designed to reduce costs, improve accuracy, and drive measurable results.
           </p>
         </ScrollReveal>
       </div>
-    </Section>
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
+    </section>
 
-    {/* Service cards */}
-    <Section className="bg-card">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {serviceCards.map((s, i) => (
-          <ScrollReveal key={i} delay={i * 0.1}>
-            <ServiceCard icon={s.icon} title={s.title} description={s.description} to={s.to} className="h-full" />
+    {/* ── Intro Text ── */}
+    <Section>
+      <div className="max-w-4xl mx-auto space-y-5">
+        {[
+          'Our services are designed to deliver value to the organizations that we serve and hence are motivated by the Success we share with our Clients.',
+          'PBI offers a portfolio of services designed to maximize the value for partners and clients in their business. We match our services to your precise needs to create the outcomes you want. We help our clients to optimize their organizational, managerial and production processes.',
+          'As delivery experts, we value agility and so do our customers. We never stop evolving to create brilliantly simple solutions. Our services bring together our local and international expertise – all designed with our customers, and their customers in mind.',
+          'Our talented team of professionals operates under an effective system of internal quality management and communication that corresponds to ISO level quality.',
+          'As a professional services firm, we know that value and trust are the main ingredients of a quality relationship — and that they are earned over more than a single engagement.',
+        ].map((text, i) => (
+          <ScrollReveal key={i} delay={i * 0.06}>
+            <p className="text-muted-foreground leading-relaxed">{text}</p>
           </ScrollReveal>
         ))}
       </div>
     </Section>
 
-    {/* Key Differentiators */}
-    <Section>
-      <ScrollReveal>
-        <h2 className="mb-10 text-center text-2xl font-bold text-foreground sm:text-3xl">
-          Key Differentiators
-        </h2>
-      </ScrollReveal>
-      <div className="mx-auto max-w-3xl">
-        <div className="grid grid-cols-1 gap-3">
-          {differentiators.map((d, i) => (
-            <ScrollReveal key={i} delay={i * 0.04}>
-              <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-                <CheckCircle className="h-5 w-5 mt-0.5 shrink-0 text-primary" />
-                <p className="text-sm text-muted-foreground">{d}</p>
+    {/* ── Service Cards ── */}
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(222,47%,8%)]">
+      <div className="max-w-7xl mx-auto">
+        <ScrollReveal>
+          <div className="text-center mb-12">
+            <span className="tag mb-4 inline-flex">What We Offer</span>
+            <h2 className="text-white">Our Core Services</h2>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {serviceCards.map((s, i) => (
+            <ScrollReveal key={i} delay={i * 0.09} direction="up">
+              <div className="group h-full flex flex-col p-7 rounded-2xl border border-white/8 bg-[hsl(222,47%,10%)] hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1">
+                <div className="mb-5 h-12 w-12 rounded-xl bg-amber-400/10 flex items-center justify-center text-amber-400 group-hover:bg-amber-400/20 transition-colors">
+                  <s.icon className="h-6 w-6" />
+                </div>
+                <h3 className="mb-3 text-lg font-['Syne'] font-bold text-white">{s.title}</h3>
+                <p className="text-sm text-white/50 leading-relaxed flex-grow">{s.description}</p>
+                {s.to && (
+                  <Link
+                    to={s.to}
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:gap-2.5 transition-all"
+                  >
+                    Learn More <ChevronRight className="h-4 w-4" />
+                  </Link>
+                )}
               </div>
             </ScrollReveal>
           ))}
         </div>
       </div>
+    </section>
+
+    {/* ── Key Differentiators ── */}
+    <Section>
+      <ScrollReveal>
+        <div className="text-center mb-12">
+          <span className="tag mb-4 inline-flex">Why PBI</span>
+          <h2 className="text-foreground">Key Differentiators</h2>
+        </div>
+      </ScrollReveal>
+      <div className="max-w-3xl mx-auto grid grid-cols-1 gap-3">
+        {differentiators.map((d, i) => (
+          <ScrollReveal key={i} delay={i * 0.035}>
+            <div className="check-row">
+              <CheckCircle className="h-4 w-4 mt-0.5 shrink-0 text-amber-500" />
+              <p className="text-sm text-muted-foreground">{d}</p>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
     </Section>
-  </>
+  </div>
 );
 
 export default Services;

@@ -1,401 +1,483 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   DollarSign, FileCode, ClipboardList, Database,
   Award, BarChart3, TrendingUp, Eye, Gem, Search, BadgeCheck,
   Workflow, MessageCircle, Users, HeadphonesIcon, LineChart, Banknote,
-  ArrowRight, Quote
+  ArrowRight, Quote, CheckCircle, ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Section from '@/components/Section';
 import ScrollReveal from '@/components/ScrollReveal';
-import ServiceCard from '@/components/ServiceCard';
 import FeatureGrid from '@/components/FeatureGrid';
-import TestimonialCarousel from '@/components/TestimonialCarousel';
 
 const heroSlides = [
-  { tagline: 'Focus!', subtitle: 'Our work is dedicated to the prosperity of our clients!' },
-  { tagline: 'Assurance!', subtitle: 'We can dramatically improve your profit margin' },
-  { tagline: 'Teamwork!', subtitle: 'Experience our quick and efficient implementation process' },
+  { tagline: 'Focus.', subtitle: 'Our work is dedicated to the prosperity of our clients' },
+  { tagline: 'Assurance.', subtitle: 'We can dramatically improve your profit margin' },
+  { tagline: 'Teamwork.', subtitle: 'Experience our quick and efficient implementation process' },
 ];
 
 const services = [
   {
     icon: DollarSign,
     title: 'Revenue Cycle Management',
-    description: 'We deliver a full range of RCM services to streamline your billing processes and achieve fast and predictable collections. We provide a broad spectrum of billing services including, but not limited to the following...',
+    description: 'We deliver a full range of RCM services to streamline your billing processes and achieve fast and predictable collections.',
+    to: '/services',
   },
   {
     icon: FileCode,
     title: 'Medical Coding',
-    description: 'We have top notch medical coders who keep themselves on the most current coding regulations. We promise our customers 24 to 48 hour turnaround time on audit and delivery. We are fully compliant with all of the Correct Coding Initiatives (CCI) and Local Medical Review Policies...',
+    description: 'Top-notch medical coders who keep on the most current coding regulations with 24-48 hour turnaround time.',
+    to: '/services/medical-coding',
   },
   {
     icon: ClipboardList,
     title: 'Claims Management',
-    description: 'Recognizing that the accurate and timely processing and payment of claims is a critical customer satisfaction measure for TPAs and health plans alike, PBI follows a systematic workflow to quickly prepare healthcare claims for payment...',
+    description: 'A systematic workflow to quickly prepare healthcare claims for payment with accuracy and speed.',
+    to: '/services/claims-management',
   },
   {
     icon: Database,
-    title: 'Data Entry/Conversion Services',
-    description: 'We provide cost-effective data entry & conversion services at unsurpassed quality at desired turnaround time of our clients. Our data services are designed to simplify and streamline...',
+    title: 'Data Entry / Conversion',
+    description: 'Cost-effective data entry & conversion services at unsurpassed quality at your desired turnaround time.',
+    to: '/services/data-entry-conversion',
   },
 ];
 
 const whyChooseUs = [
-  { icon: Award, title: 'Experience & expertise' },
-  { icon: BarChart3, title: 'Measurable results' },
-  { icon: TrendingUp, title: 'Proof of performance' },
-  { icon: Eye, title: 'Transparency & integrity' },
-  { icon: Gem, title: 'Bespoke service' },
-  { icon: Search, title: 'Attention to detail' },
-  { icon: BadgeCheck, title: 'High quality at low pricing' },
+  { icon: Award, title: 'Experience & Expertise' },
+  { icon: BarChart3, title: 'Measurable Results' },
+  { icon: TrendingUp, title: 'Proof of Performance' },
+  { icon: Eye, title: 'Transparency & Integrity' },
+  { icon: Gem, title: 'Bespoke Service' },
+  { icon: Search, title: 'Attention to Detail' },
+  { icon: BadgeCheck, title: 'High Quality, Low Pricing' },
 ];
 
 const segmentedApproach = [
-  { icon: Workflow, title: 'Process', description: 'We have standardized end-to-end processes to meet agreed SLAs consistently. Our process framework is designed to provide continuous improvements.' },
-  { icon: MessageCircle, title: 'Communication', description: 'We ensure our expert team is always available when you need us. No matter what you need help with, no matter where you are, you can always give us a call / send us a mail.' },
-  { icon: Users, title: 'People', description: 'We have a scalable pool of dedicated people with deep revenue cycle expertise. They are our most valuable resource reflecting the spirit of the company at all times.' },
-  { icon: HeadphonesIcon, title: 'Support', description: 'We deliver outstanding customer support on all our services. Our team is dedicated to providing you with an excellent customer support experience in a timely manner.' },
-  { icon: LineChart, title: 'Analytics', description: 'Our expert analytics empowers you to track and improve the performance of your business. We bring in high impact business intelligence that will bridge the gaps.' },
-  { icon: Banknote, title: 'Cash flow', description: 'We have designed our business model in such a way that it saves you time, cuts operating costs and increases your cash flow. We want you to practice profitability.' },
+  { icon: Workflow, title: 'Process', description: 'Standardized end-to-end processes to meet agreed SLAs consistently. Our process framework is designed to provide continuous improvements.' },
+  { icon: MessageCircle, title: 'Communication', description: 'Our expert team is always available when you need us. No matter what you need help with, you can always reach us.' },
+  { icon: Users, title: 'People', description: 'A scalable pool of dedicated people with deep revenue cycle expertise. They are our most valuable resource.' },
+  { icon: HeadphonesIcon, title: 'Support', description: 'Outstanding customer support on all our services. Our team is dedicated to providing excellent support in a timely manner.' },
+  { icon: LineChart, title: 'Analytics', description: 'Expert analytics empowers you to track and improve business performance. We bring high-impact business intelligence.' },
+  { icon: Banknote, title: 'Cash Flow', description: 'Our business model saves you time, cuts operating costs and increases your cash flow. We want you to practice profitability.' },
 ];
 
 const testimonials = [
   {
-    quote: "I have been working with PBI for quite awhile now and I am extremely impressed with their professional attitude and approachable manner. Healthcare is a complex industry, but PBI have consistently understood my needs. They've always got it right the first time - and on time. I simply wouldn't recommend anyone else!",
-    author: "- CEO of a Billing Company in NJ",
+    quote: "I have been working with PBI for quite awhile now and I am extremely impressed with their professional attitude. Healthcare is complex, but PBI have consistently understood my needs. They've always got it right the first time — and on time.",
+    author: "CEO of a Billing Company in NJ",
   },
   {
-    quote: "PBI came highly recommended to us. Great businesses prove their worth to customers and I now recommend PBI myself! This is due to their excellent service, competitive pricing and outstanding customer care. In a world that's becoming so distant and digital, it's thoroughly refreshing to get such a personal touch.",
-    author: "- Data Entry Company in London",
+    quote: "PBI came highly recommended to us. Great businesses prove their worth to customers and I now recommend PBI myself! Due to their excellent service, competitive pricing and outstanding customer care.",
+    author: "Data Entry Company in London",
   },
   {
-    quote: "Having PBI on board is always reassuring because Billing is where our business risk is. You can trust them to repeatedly deliver with a no-nonsense approach.” We always find their staff responsive and easy to communicate with and they understand the need for error-free billing and ensure we achieve our objectives.”",
-    author: "- Physician practicing in NJ",
+    quote: "Having PBI on board is always reassuring because Billing is where our business risk is. You can trust them to repeatedly deliver with a no-nonsense approach. Their staff is responsive and easy to communicate with.",
+    author: "Physician practicing in NJ",
   },
+];
+
+const stats = [
+  { value: '99.8%', label: 'Coding Accuracy' },
+  { value: '24h', label: 'Avg. Turnaround' },
+  { value: '15+', label: 'Years Experience' },
+  { value: '3', label: 'Global Offices' },
 ];
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((s) => (s + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    const t = setInterval(() => setCurrentSlide((s) => (s + 1) % heroSlides.length), 5000);
+    return () => clearInterval(t);
   }, []);
 
-  const { scrollY } = useScroll();
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const heroScale = useTransform(scrollY, [0, 400], [1, 0.9]);
-
   return (
-    <div className="relative overflow-hidden">
-      {/* Cinematic Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-40 pb-12 px-4 overflow-hidden">
-        {/* Background Visuals */}
-        <div className="absolute inset-0 z-0">
+    <div className="relative overflow-x-hidden">
 
-          {/* Futuristic Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background/50" />
+      {/* ══════════════════════════════════════════
+          HERO SECTION — Dark, Cinematic, Bold
+      ══════════════════════════════════════════ */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[hsl(222,47%,7%)] pt-20">
 
-          {/* Animated Scanning Line */}
-          <motion.div
-            animate={{ top: ['0%', '100%', '0%'] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            className="absolute left-0 right-0 h-1 bg-primary/20 backdrop-blur-sm z-10 shadow-[0_0_20px_rgba(14,165,233,0.3)] pointer-events-none"
-          />
-        </div>
+        {/* Background grid dots */}
+        <div className="absolute inset-0 bg-dots opacity-40" />
 
+        {/* Diagonal amber accent */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-400/8 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-400/5 rounded-full blur-[100px] pointer-events-none" />
+
+        {/* Animated gold line */}
         <motion.div
-          style={{ opacity: heroOpacity, scale: heroScale }}
-          className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center"
-        >
-          {/* Left Content */}
-          <div className="text-center lg:text-left">
+          animate={{ scaleX: [0, 1, 0], x: ['-50%', '150%'] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', repeatDelay: 2 }}
+          className="absolute top-1/2 left-0 h-px w-48 bg-gradient-to-r from-transparent via-amber-400 to-transparent pointer-events-none"
+        />
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Left */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold uppercase tracking-[0.2em] mb-6 backdrop-blur-md">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-                Evolution 2030: Next-Gen Healthcare Ops
-              </span>
+              {/* Tag */}
+              <div className="tag mb-8">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                Premium Healthcare BPO Services
+              </div>
 
-              <h1 className="text-shimmer text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
-                {heroSlides[currentSlide].tagline}
-              </h1>
+              {/* Headline with slide */}
+              <div className="relative h-[1.2em] overflow-hidden mb-4">
+                <AnimatePresence mode="wait">
+                  <motion.h1
+                    key={currentSlide}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-white font-['Syne'] font-extrabold leading-tight"
+                  >
+                    {heroSlides[currentSlide].tagline}
+                  </motion.h1>
+                </AnimatePresence>
+              </div>
 
-              <p className="text-xl md:text-2xl text-foreground/70 mb-12 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
-                {heroSlides[currentSlide].subtitle}
-              </p>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={`sub-${currentSlide}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-xl md:text-2xl text-white/60 mb-10 leading-relaxed font-light"
+                >
+                  {heroSlides[currentSlide].subtitle}
+                </motion.p>
+              </AnimatePresence>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
+              <div className="flex flex-wrap items-center gap-4">
                 <Link
                   to="/services"
-                  className="group relative px-8 py-4 rounded-2xl bg-primary text-white font-bold text-lg overflow-hidden shadow-2xl shadow-primary/30 transition-all hover:scale-105"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-amber-400 text-[hsl(222,47%,8%)] text-sm font-bold transition-all hover:bg-amber-300 hover:shadow-[0_0_30px_rgba(251,191,36,0.4)] active:scale-95"
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    Explore AI Solutions <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                  Explore Services <ArrowRight className="h-4 w-4" />
                 </Link>
-
                 <Link
                   to="/contacts"
-                  className="px-8 py-4 rounded-2xl bg-white/80 backdrop-blur-md border-2 border-primary/20 text-primary font-bold text-lg transition-all hover:bg-primary/5 hover:border-primary/40 shadow-xl shadow-primary/5"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg border border-white/15 text-white/80 text-sm font-medium hover:border-amber-400/50 hover:text-white transition-all"
                 >
                   Partner With Us
                 </Link>
+              </div>
 
-                <div className="flex -space-x-3 ml-4">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="h-10 w-10 rounded-full border-2 border-background bg-muted overflow-hidden flex items-center justify-center text-[10px] font-bold">
-                      AI-{i}
+              {/* Slide dots */}
+              <div className="flex gap-2 mt-10">
+                {heroSlides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={cn(
+                      'h-1 rounded-full transition-all duration-500',
+                      i === currentSlide ? 'w-8 bg-amber-400' : 'w-3 bg-white/20 hover:bg-white/40'
+                    )}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right — Stats Panel */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="hidden lg:block"
+            >
+              <div className="relative rounded-2xl border border-white/8 bg-[hsl(222,47%,9%)] p-8 overflow-hidden">
+                {/* Gold corner accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-bl-[5rem] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-16 h-16 bg-amber-400/20 rounded-bl-[3rem] pointer-events-none" />
+
+                <div className="relative z-10 mb-8 flex items-center justify-between">
+                  <h3 className="text-white font-['Syne'] font-bold text-lg">Operational Performance</h3>
+                  <span className="text-xs font-bold text-amber-400 tracking-widest uppercase animate-pulse">Live</span>
+                </div>
+
+                {/* Bar chart */}
+                <div className="flex items-end gap-2 h-28 mb-8">
+                  {[55, 78, 62, 95, 71, 88, 58, 100].map((h, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ height: 0 }}
+                      animate={{ height: `${h}%` }}
+                      transition={{ duration: 0.8, delay: i * 0.08, ease: 'easeOut' }}
+                      className={cn(
+                        'flex-1 rounded-sm',
+                        h === 100
+                          ? 'bg-amber-400'
+                          : 'bg-gradient-to-t from-amber-400/30 to-amber-400/70'
+                      )}
+                    />
+                  ))}
+                </div>
+
+                {/* Stats grid */}
+                <div className="grid grid-cols-2 gap-4">
+                  {stats.map((s, i) => (
+                    <div key={i} className="p-4 rounded-xl bg-white/4 border border-white/8">
+                      <div className="text-2xl font-['Syne'] font-extrabold text-amber-400">{s.value}</div>
+                      <div className="text-xs text-white/40 mt-1 uppercase tracking-wider">{s.label}</div>
                     </div>
                   ))}
-                  <div className="pl-6 text-sm font-semibold text-foreground/60 flex items-center">
-                    AI-Enhanced Resource Management
+                </div>
+
+                <div className="mt-6 flex items-center gap-3 p-4 rounded-xl bg-amber-400/8 border border-amber-400/15">
+                  <div className="h-9 w-9 rounded-lg bg-amber-400/20 flex items-center justify-center">
+                    <Award className="h-5 w-5 text-amber-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-white">HIPAA Certified Operations</div>
+                    <div className="text-xs text-white/40">Full compliance across all offices</div>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
+        </div>
 
-          {/* Right Visual Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="hidden lg:block relative"
-          >
-            <div className="absolute -inset-10 bg-primary/20 blur-[100px] rounded-full animate-pulse" />
-            <div className="relative aspect-square flex flex-col justify-center gap-12">
-              {/* Fake UI Data Visualization */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-end">
-                  <h4 className="font-bold text-primary">Operational Efficiency</h4>
-                  <span className="text-xs font-mono text-primary animate-pulse">LIVE ANALYTICS</span>
-                </div>
-                <div className="h-32 flex items-end gap-2">
-                  {[40, 70, 45, 90, 65, 80, 50, 95].map((h, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${h}%` }}
-                      transition={{ duration: 1, delay: i * 0.1 }}
-                      className="flex-1 bg-gradient-to-t from-primary/20 to-primary rounded-t-sm"
-                    />
-                  ))}
-                </div>
-              </div>
+        {/* Bottom gradient fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </section>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col">
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">RCM Accuracy</span>
-                  <div className="text-3xl font-black text-foreground">99.8%</div>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">Scaling Rate</span>
-                  <div className="text-3xl font-black text-primary">12.5x</div>
-                </div>
-              </div>
-
-              <div className="mt-8 flex items-center gap-6">
-                <div className="h-14 w-14 rounded-full bg-accent/20 flex items-center justify-center">
-                  <Award className="h-8 w-8 text-accent" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-lg font-bold text-foreground">Future-Proof Certified</div>
-                  <div className="text-sm text-muted-foreground">Certified ISO 2030 Healthcare Compliance</div>
-                </div>
-              </div>
+      {/* ══════════════════════════════════════════
+          SERVICES
+      ══════════════════════════════════════════ */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="mb-4 text-center">
+              <span className="tag">What We Do</span>
             </div>
-          </motion.div>
-        </motion.div>
+            <h2 className="text-center text-foreground mb-4">
+              We are experienced BPO professionals
+            </h2>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+              Delivering premium healthcare and business process outsourcing services to clients across the globe.
+            </p>
+          </ScrollReveal>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-4">
-          {heroSlides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className={cn(
-                'h-1.5 transition-all duration-500 rounded-full',
-                i === currentSlide ? 'w-12 bg-primary' : 'w-4 bg-primary/20 hover:bg-primary/40'
-              )}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((s, i) => (
+              <ScrollReveal key={i} delay={i * 0.09} direction="up">
+                <div className="group relative h-full flex flex-col p-7 rounded-2xl border border-border bg-card hover:border-amber-400/40 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1">
+                  {/* Icon */}
+                  <div className="mb-5 h-12 w-12 rounded-xl bg-amber-400/10 flex items-center justify-center text-amber-500 group-hover:bg-amber-400/20 transition-colors">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mb-3 text-lg font-bold text-foreground leading-snug">
+                    {s.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
+                    {s.description}
+                  </p>
+                  <Link
+                    to={s.to}
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:gap-2.5 transition-all"
+                  >
+                    Learn More <ChevronRight className="h-4 w-4" />
+                  </Link>
+
+                  {/* Corner accent */}
+                  <div className="absolute top-0 right-0 h-16 w-16 rounded-bl-[2.5rem] bg-amber-400/5 group-hover:bg-amber-400/10 transition-colors pointer-events-none" />
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Services */}
-      <Section>
-        <ScrollReveal variant={2}>
-          <h2 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
-            We are experienced BPO professionals
-          </h2>
-        </ScrollReveal>
-        <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s, i) => (
-            <ScrollReveal
-              key={i}
-              delay={i * 0.1}
-              direction="up"
-              variant={1}
-            >
-              <div className="flex flex-col group">
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
-                  <s.icon className="h-6 w-6" />
+      {/* ══════════════════════════════════════════
+          STATS BANNER
+      ══════════════════════════════════════════ */}
+      <section className="py-14 bg-[hsl(222,47%,8%)] border-y border-white/6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((s, i) => (
+              <ScrollReveal key={i} delay={i * 0.1}>
+                <div className="text-center">
+                  <div className="text-gold-shimmer stat-number">{s.value}</div>
+                  <div className="mt-2 text-xs text-white/40 uppercase tracking-widest font-medium">{s.label}</div>
                 </div>
-                <h3 className="mb-4 text-xl font-bold text-foreground">
-                  {s.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground/80">
-                  {s.description}
-                </p>
-                <div className="mt-auto">
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          WHY CHOOSE US
+      ══════════════════════════════════════════ */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="mb-4 text-center"><span className="tag">Why Us</span></div>
+            <h2 className="text-center text-foreground mb-4">Why clients choose us?</h2>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+              We have the expertise, enthusiasm, flexibility and commitment to deliver results time after time and to deadline.
+            </p>
+          </ScrollReveal>
+          <div className="mt-14">
+            <FeatureGrid features={whyChooseUs} columns={4} />
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          SEGMENTED APPROACH — Dark Panel
+      ══════════════════════════════════════════ */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[hsl(222,47%,8%)]">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="mb-4 text-center"><span className="tag">Our Approach</span></div>
+            <h2 className="text-center text-white mb-4">Our segmented approach</h2>
+            <p className="text-center text-white/50 max-w-2xl mx-auto">
+              A structured methodology that ensures consistent, measurable results every time.
+            </p>
+          </ScrollReveal>
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {segmentedApproach.map((item, i) => (
+              <ScrollReveal key={i} delay={i * 0.08} direction="up">
+                <div className="group p-7 rounded-2xl border border-white/8 hover:border-amber-400/30 bg-[hsl(222,47%,10%)] hover:bg-[hsl(222,47%,11%)] transition-all duration-300">
+                  <div className="mb-4 h-11 w-11 rounded-xl bg-amber-400/10 flex items-center justify-center text-amber-400 group-hover:bg-amber-400/20 transition-colors">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <h4 className="mb-2 text-base font-bold text-white">{item.title}</h4>
+                  <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          WHO / WHAT / SECURITY
+      ══════════════════════════════════════════ */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            {[
+              {
+                title: 'Who we are',
+                text: 'Phoenix Business Initiatives (PBI) is a young and vibrant company that aims to provide high quality services. At PBI, we strive to achieve the highest level of "Customer Satisfaction" possible. With offices in Dallas and London, our team operates from India to ensure services at the premier level of quality.',
+                to: '/about',
+              },
+              {
+                title: 'What we do',
+                text: 'Our services are designed to deliver value to the organizations we serve. We offer Revenue Cycle Management, Medical Coding, Claims Management, and Data Entry / Conversion services.',
+                to: '/services',
+                list: ['Revenue Cycle Management', 'Medical Coding', 'Data Entry / Conversion', 'Claims Management'],
+              },
+              {
+                title: 'Security & HIPAA',
+                text: 'Security is of utmost importance at PBI. We protect all patient data with the highest form of security. Our servers use top-quality firewalls, file transfer done through secure FTP, and we maintain full HIPAA compliance.',
+                to: '/security',
+              },
+            ].map((block, i) => (
+              <ScrollReveal key={i} delay={i * 0.12} direction="up">
+                <div className="h-full p-8 rounded-2xl border border-border bg-card hover:border-amber-400/30 transition-all duration-300 hover:shadow-md group">
+                  <div className="line-accent" />
+                  <h3 className="mb-4 text-xl font-bold text-foreground">{block.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{block.text}</p>
+                  {block.list && (
+                    <ul className="mb-4 space-y-2">
+                      {block.list.map((item) => (
+                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <CheckCircle className="h-3.5 w-3.5 shrink-0 text-amber-500" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   <Link
-                    to="/services"
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                    to={block.to}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:gap-2.5 transition-all"
                   >
-                    Read More <ArrowRight className="h-3.5 w-3.5" />
+                    Read More <ChevronRight className="h-4 w-4" />
                   </Link>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* Why choose us */}
-      <Section>
-        <ScrollReveal variant={2}>
-          <h2 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
-            Why clients choose us?
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-muted-foreground">
-            We have the expertise, enthusiasm, flexibility and commitment to deliver results time after time and to deadline. It is a combination of all of the following characteristics that make us unique.
-          </p>
-        </ScrollReveal>
-        <div className="mt-12">
-          <FeatureGrid features={whyChooseUs} columns={4} />
-        </div>
-      </Section>
-
-      {/* Segmented approach */}
-      <Section>
-        <ScrollReveal variant={2}>
-          <h2 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
-            Have a look through our segmented approach
-          </h2>
-        </ScrollReveal>
-        <div className="mt-12">
-          <FeatureGrid features={segmentedApproach} columns={3} />
-        </div>
-      </Section>
-
-      {/* Who/What/Security */}
-      <Section>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          <ScrollReveal variant={3} direction="left">
-            <div className="flex flex-col">
-              <h3 className="mb-4 text-2xl font-bold text-foreground">Who we are?</h3>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                Phoenix Business Initiatives (PBI) is a young and vibrant company that aims to provide high quality services. At PBI, we strive to achieve the highest level of "Customer Satisfaction" possible. With offices in Tampa & Jacksonville, Florida the PBI's team of dedicated professionals operates from their offshore location in India to ensure services...
-              </p>
-              <Link to="/about" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
-                Read More <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15} variant={1}>
-            <div className="flex flex-col">
-              <h3 className="mb-4 text-2xl font-bold text-foreground">What we do?</h3>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                Our services are designed to deliver value to the organizations that we serve and hence are motivated by the success we share with our clients. We offer the following healthcare services:
-              </p>
-              <ul className="mt-6 space-y-2 text-base text-muted-foreground">
-                <li>• Revenue Cycle Management</li>
-                <li>• Medical Coding</li>
-                <li>• Data Entry / Conversion</li>
-              </ul>
-              <Link to="/services" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
-                Read More <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.3} variant={3} direction="right">
-            <div className="flex flex-col">
-              <h3 className="mb-4 text-2xl font-bold text-foreground">Security & HIPAA</h3>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                Security is of utmost importance at PBI that is why we protect all patient data with the highest form of security possible. Our servers use the highest quality firewalls, providing greater security than a typical office server. All paper documents (if any are printed) are properly shredded, file transfer done through secure FTP, we have the technology to work...
-              </p>
-              <Link to="/security" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
-                Read More <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <Section>
-        <ScrollReveal>
-          <div className="max-w-4xl mx-auto rounded-[1.5rem] bg-primary p-6 md:p-8 text-center text-white shadow-2xl overflow-hidden relative group">
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/60 dark:bg-white/5 rounded-full blur-3xl group-hover:bg-white/80 dark:bg-white/10 transition-colors duration-700" />
-            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-48 h-48 bg-primary/20 rounded-full blur-2xl" />
-
-            <h2 className="text-2xl md:text-4xl font-black mb-3 relative z-10">
-              We are interested in hearing from you.
-            </h2>
-            <p className="text-white/90 text-base md:text-lg font-medium mb-8 relative z-10">
-              Write about your primary interest right now!
-            </p>
-            <Link
-              to="/contacts"
-              className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 text-sm font-bold text-primary transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-white/20 relative z-10"
-            >
-              Submit the form! <ArrowRight className="h-4 w-4" />
-            </Link>
+              </ScrollReveal>
+            ))}
           </div>
-        </ScrollReveal>
-      </Section>
+        </div>
+      </section>
 
-      {/* Testimonials */}
-      <Section className="bg-transparent mt-10">
-        <ScrollReveal variant={2}>
-          <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-primary">
-            What people say about us
-          </h2>
-        </ScrollReveal>
+      {/* ══════════════════════════════════════════
+          CTA BANNER
+      ══════════════════════════════════════════ */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[hsl(222,47%,8%)]">
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal>
+            <div className="relative rounded-2xl overflow-hidden border border-amber-400/20 p-10 md:p-16 text-center bg-gradient-to-br from-[hsl(222,47%,11%)] to-[hsl(222,47%,8%)]">
+              {/* amber glow */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[400px] h-[200px] bg-amber-400/8 rounded-full blur-[80px]" />
+              </div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
-          {testimonials.map((t, i) => (
-            <ScrollReveal key={i} delay={i * 0.1} variant={1}>
-              <div className="h-full flex gap-4 group">
-                <Quote className="h-10 w-10 text-foreground shrink-0 mt-0" />
-                <div className="flex flex-col h-full">
-                  <p className="text-sm md:text-base leading-relaxed text-muted-foreground font-semibold mb-6">
-                    {t.quote}
+              <span className="tag mb-6 inline-flex">Let's Talk</span>
+              <h2 className="text-3xl md:text-5xl font-['Syne'] font-extrabold text-white mb-4">
+                We're interested in <br className="hidden md:block" />
+                hearing from you.
+              </h2>
+              <p className="text-white/50 text-lg mb-10 max-w-xl mx-auto">
+                Write about your primary interest — our experts will get back to you within 24 hours.
+              </p>
+              <Link
+                to="/contacts"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-amber-400 text-[hsl(222,47%,8%)] font-bold text-base hover:bg-amber-300 transition-all hover:shadow-[0_0_40px_rgba(251,191,36,0.35)] active:scale-95"
+              >
+                Submit the Form <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          TESTIMONIALS
+      ══════════════════════════════════════════ */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="mb-4 text-center"><span className="tag">Testimonials</span></div>
+            <h2 className="text-center text-foreground mb-12">What people say about us</h2>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <ScrollReveal key={i} delay={i * 0.1} direction="up">
+                <div className="h-full flex flex-col p-8 rounded-2xl border border-border bg-card hover:border-amber-400/30 hover:shadow-md transition-all duration-300 group">
+                  <Quote className="h-8 w-8 text-amber-400/70 mb-5 shrink-0" />
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-grow italic mb-6">
+                    "{t.quote}"
                   </p>
-                  <div className="mt-auto text-right">
-                    <p className="font-black text-foreground text-sm md:text-base tracking-tighter">
-                      {t.author}
-                    </p>
+                  <div className="pt-4 border-t border-border flex items-center gap-3">
+                    <div className="h-9 w-9 rounded-full bg-amber-400/15 flex items-center justify-center text-amber-600 text-xs font-black">
+                      {t.author[0]}
+                    </div>
+                    <p className="text-sm font-bold text-foreground">— {t.author}</p>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
     </div>
   );
 };
