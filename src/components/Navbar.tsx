@@ -90,10 +90,10 @@ const Navbar = () => {
       {/* Floating Futuristic Container */}
       <div
         className={cn(
-          'mx-auto max-w-7xl transition-all duration-500 rounded-[1.5rem] border border-white/20',
+          'mx-auto max-w-7xl transition-all duration-500 rounded-[1.5rem] border',
           scrolled
-            ? 'bg-white/10 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] py-1.5 px-5 border-white/30'
-            : 'bg-white/5 backdrop-blur-md py-2.5 px-6 border-transparent'
+            ? 'bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] py-1.5 px-5 border-white/60'
+            : 'bg-white/40 backdrop-blur-md py-2.5 px-6 border-white/40'
         )}
       >
         <div className="flex items-center justify-between h-16 md:h-24">
@@ -103,8 +103,8 @@ const Navbar = () => {
             className="relative flex-shrink-0 transition-all duration-500 group"
             aria-label="PBI Global"
           >
-            <div className="absolute -inset-4 bg-primary/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <img src="/pbi-logo.png" alt="PBI Global" className="h-14 md:h-20 w-auto relative z-10 brightness-110 contrast-125" />
+            <div className="absolute -inset-4 bg-primary/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <img src="/pbi-logo.png" alt="PBI Global" className="h-14 md:h-16 w-auto relative z-10 transition-transform duration-500 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Nav - Glassy Pills */}
@@ -127,7 +127,7 @@ const Navbar = () => {
                           'flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold tracking-tight transition-all duration-300',
                           active
                             ? 'text-primary bg-primary/10 shadow-[0_0_15px_rgba(14,165,233,0.3)]'
-                            : 'text-foreground/80 hover:text-primary hover:bg-white/10'
+                            : 'text-foreground/80 hover:text-primary hover:bg-white/80 dark:bg-white/10'
                         )}
                       >
                         {link.label}
@@ -141,7 +141,7 @@ const Navbar = () => {
                           servicesOpen ? 'visible opacity-100 translate-y-0 scale-100' : 'invisible opacity-0 -translate-y-4 scale-95'
                         )}
                       >
-                        <div className="w-80 bg-white shadow-2xl rounded-2xl overflow-hidden p-2 flex flex-col gap-1 border border-primary/20">
+                        <div className="w-80 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden p-2 flex flex-col gap-1 border border-primary/10">
                           {servicesDropdown.map((item) => (
                             <Link
                               key={item.label}
@@ -161,7 +161,7 @@ const Navbar = () => {
                         'relative flex items-center px-4 py-2 rounded-full text-sm font-bold tracking-tight transition-all duration-300',
                         active
                           ? 'text-primary bg-primary/10 shadow-[0_0_15px_rgba(14,165,233,0.3)]'
-                          : 'text-foreground/80 hover:text-primary hover:bg-white/10'
+                          : 'text-foreground/80 hover:text-primary hover:bg-white/80 dark:bg-white/10'
                       )}
                     >
                       {link.label}
@@ -186,7 +186,7 @@ const Navbar = () => {
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden flex h-11 w-11 items-center justify-center rounded-full bg-white/10 border border-white/20 text-foreground transition-all active:scale-90"
+              className="md:hidden flex h-11 w-11 items-center justify-center rounded-full bg-white/80 dark:bg-white/10 border border-white/80 dark:border-white/20 text-foreground transition-all active:scale-90"
             >
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -209,7 +209,7 @@ const Navbar = () => {
                 to={link.to}
                 className={cn(
                   'px-6 py-4 rounded-3xl text-xl font-bold transition-all duration-300',
-                  location.pathname === link.to ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'text-foreground/80 hover:bg-white/10'
+                  location.pathname === link.to ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'text-foreground/80 hover:bg-white/80 dark:bg-white/10'
                 )}
               >
                 {link.label}

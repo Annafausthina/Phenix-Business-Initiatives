@@ -41,8 +41,8 @@ const ServiceCard = ({ icon: Icon, title, description, to, className, children }
   );
 
   const cardClasses = cn(
-    'group relative flex h-full flex-col rounded-[2.5rem] border border-white/20 bg-white/5 p-8 backdrop-blur-md transition-all duration-500 overflow-hidden',
-    'hover:bg-white/10 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(14,165,233,0.15)] hover:border-primary/40',
+    'group relative flex h-full flex-col rounded-[2.5rem] border border-white/80 dark:border-white/20 bg-white/60 dark:bg-white/5 p-8 backdrop-blur-md transition-all duration-500 overflow-hidden',
+    'hover:bg-white/80 dark:bg-white/10 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(14,165,233,0.15)] hover:border-primary/40',
     className
   );
 

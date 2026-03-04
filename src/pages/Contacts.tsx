@@ -43,7 +43,7 @@ const offices = [
 const Contacts = () => (
   <div className="relative overflow-hidden">
     {/* Cinematic Hero Section */}
-    <section className="relative pt-48 pb-24 px-4 overflow-hidden bg-[#149184]/5">
+    <section className="relative pt-48 pb-24 px-4 overflow-hidden bg-primary/5">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] opacity-50" />
@@ -70,7 +70,7 @@ const Contacts = () => (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {offices.map((office, i) => (
           <ScrollReveal key={i} delay={i * 0.1} variant={3} direction="up">
-            <div className="group relative h-full flex flex-col p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:border-primary/40 transition-all duration-500 hover:translate-y-[-10px] shadow-2xl overflow-hidden">
+            <div className="group relative h-full flex flex-col p-8 rounded-[2.5rem] bg-white/60 dark:bg-white/5 border border-white/60 dark:border-white/10 hover:border-primary/40 transition-all duration-500 hover:translate-y-[-10px] shadow-2xl overflow-hidden">
               {/* Background Accent */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/10 transition-colors" />
 
@@ -96,7 +96,7 @@ const Contacts = () => (
                 ))}
               </div>
 
-              <div className="pt-6 border-t border-white/10">
+              <div className="pt-6 border-t border-white/60 dark:border-white/10">
                 <div className="flex items-center gap-3 text-foreground font-bold group-hover:text-primary transition-colors">
                   <Phone className="h-4 w-4" />
                   {office.contact}
@@ -131,7 +131,7 @@ const Contacts = () => (
                 { label: 'Fax Line', value: '352-353-0923', icon: Printer, type: 'text' }
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-5 p-4 rounded-3xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors group">
-                  <div className="h-14 w-14 rounded-2xl bg-[#149184]/10 flex items-center justify-center text-[#149184] group-hover:bg-[#149184] group-hover:text-white transition-all">
+                  <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
                     <item.icon className="h-6 w-6" />
                   </div>
                   <div>
@@ -156,8 +156,8 @@ const Contacts = () => (
           </ScrollReveal>
 
           <ScrollReveal delay={0.2} variant={3} direction="right">
-            <div className="rounded-[3rem] bg-gradient-to-br from-[#149184] to-[#0d6b61] p-12 text-white shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700" />
+            <div className="rounded-[3rem] bg-gradient-to-br from-primary to-primary/80 p-12 text-white shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/80 dark:bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700" />
 
               <h3 className="text-3xl font-black mb-6 relative z-10">Administrative Support</h3>
               <p className="text-white/80 mb-8 leading-relaxed font-medium relative z-10">
@@ -165,7 +165,7 @@ const Contacts = () => (
               </p>
 
               <div className="space-y-4 relative z-10">
-                <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
+                <div className="p-6 rounded-2xl bg-white/80 dark:bg-white/10 backdrop-blur-md border border-white/80 dark:border-white/20">
                   <span className="text-xs font-black uppercase tracking-widest block mb-2 opacity-60">Corporate HQ</span>
                   <p className="font-bold text-lg">Jacksonville & Tampa, Florida</p>
                   <p className="opacity-80">Overseeing Revenue Cycle Management & Global Logistics</p>

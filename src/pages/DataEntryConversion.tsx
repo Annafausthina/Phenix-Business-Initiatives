@@ -61,7 +61,7 @@ const DataEntryConversion = () => (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {entryServices.map((service, i) => (
                     <ScrollReveal key={i} delay={i * 0.03}>
-                        <div className="group relative flex items-center gap-4 p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/10 hover:-translate-y-1 hover:border-primary/30">
+                        <div className="group relative flex items-center gap-4 p-5 rounded-2xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/80 dark:bg-white/10 hover:-translate-y-1 hover:border-primary/30">
                             <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary shadow-inner transition-transform duration-500 group-hover:scale-110">
                                 <service.icon className="h-5 w-5" />
                             </div>

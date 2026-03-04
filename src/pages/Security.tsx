@@ -86,7 +86,7 @@ const Security = () => (
     {/* Testimonials */}
     <Section className="bg-transparent mt-10">
       <ScrollReveal variant={2}>
-        <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-[#149184]">
+        <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-primary">
           What people say about us
         </h2>
       </ScrollReveal>
@@ -95,13 +95,13 @@ const Security = () => (
         {testimonials.map((t, i) => (
           <ScrollReveal key={i} delay={i * 0.1} variant={1}>
             <div className="h-full flex gap-4 group">
-              <Quote className="h-10 w-10 text-[#333333] shrink-0 mt-0" />
+              <Quote className="h-10 w-10 text-foreground shrink-0 mt-0" />
               <div className="flex flex-col h-full">
-                <p className="text-sm md:text-base leading-relaxed text-[#555555] font-semibold mb-6">
+                <p className="text-sm md:text-base leading-relaxed text-muted-foreground font-semibold mb-6">
                   {t.quote}
                 </p>
                 <div className="mt-auto text-right">
-                  <p className="font-black text-[#222222] text-sm md:text-base tracking-tighter">
+                  <p className="font-black text-foreground text-sm md:text-base tracking-tighter">
                     {t.author}
                   </p>
                 </div>

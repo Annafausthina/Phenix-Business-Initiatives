@@ -148,7 +148,7 @@ const Index = () => {
 
                 <Link
                   to="/contacts"
-                  className="px-8 py-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-primary-foreground font-bold text-lg transition-all hover:bg-white/30"
+                  className="px-8 py-4 rounded-2xl bg-white/80 backdrop-blur-md border-2 border-primary/20 text-primary font-bold text-lg transition-all hover:bg-primary/5 hover:border-primary/40 shadow-xl shadow-primary/5"
                 >
                   Partner With Us
                 </Link>
@@ -348,8 +348,8 @@ const Index = () => {
       {/* CTA */}
       <Section>
         <ScrollReveal>
-          <div className="max-w-4xl mx-auto rounded-[1.5rem] bg-[#149184] p-6 md:p-8 text-center text-white shadow-2xl overflow-hidden relative group">
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-700" />
+          <div className="max-w-4xl mx-auto rounded-[1.5rem] bg-primary p-6 md:p-8 text-center text-white shadow-2xl overflow-hidden relative group">
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/60 dark:bg-white/5 rounded-full blur-3xl group-hover:bg-white/80 dark:bg-white/10 transition-colors duration-700" />
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-48 h-48 bg-primary/20 rounded-full blur-2xl" />
 
             <h2 className="text-2xl md:text-4xl font-black mb-3 relative z-10">
@@ -360,7 +360,7 @@ const Index = () => {
             </p>
             <Link
               to="/contacts"
-              className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 text-sm font-bold text-[#149184] transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-white/20 relative z-10"
+              className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 text-sm font-bold text-primary transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-white/20 relative z-10"
             >
               Submit the form! <ArrowRight className="h-4 w-4" />
             </Link>
@@ -371,7 +371,7 @@ const Index = () => {
       {/* Testimonials */}
       <Section className="bg-transparent mt-10">
         <ScrollReveal variant={2}>
-          <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-[#149184]">
+          <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-primary">
             What people say about us
           </h2>
         </ScrollReveal>
@@ -380,13 +380,13 @@ const Index = () => {
           {testimonials.map((t, i) => (
             <ScrollReveal key={i} delay={i * 0.1} variant={1}>
               <div className="h-full flex gap-4 group">
-                <Quote className="h-10 w-10 text-[#333333] shrink-0 mt-0" />
+                <Quote className="h-10 w-10 text-foreground shrink-0 mt-0" />
                 <div className="flex flex-col h-full">
-                  <p className="text-sm md:text-base leading-relaxed text-[#555555] font-semibold mb-6">
+                  <p className="text-sm md:text-base leading-relaxed text-muted-foreground font-semibold mb-6">
                     {t.quote}
                   </p>
                   <div className="mt-auto text-right">
-                    <p className="font-black text-[#222222] text-sm md:text-base tracking-tighter">
+                    <p className="font-black text-foreground text-sm md:text-base tracking-tighter">
                       {t.author}
                     </p>
                   </div>

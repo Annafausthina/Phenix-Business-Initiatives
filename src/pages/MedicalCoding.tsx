@@ -71,7 +71,7 @@ const MedicalCoding = () => (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {codingServices.map((service, i) => (
                     <ScrollReveal key={i} delay={i * 0.1}>
-                        <div className="group relative flex flex-col items-center text-center p-8 rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/10 hover:-translate-y-2 hover:border-primary/30">
+                        <div className="group relative flex flex-col items-center text-center p-8 rounded-[2rem] border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/80 dark:bg-white/10 hover:-translate-y-2 hover:border-primary/30">
                             <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-inner transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                                 <service.icon className="h-8 w-8" />
                             </div>

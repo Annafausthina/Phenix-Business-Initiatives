@@ -83,7 +83,7 @@ const ClaimsManagement = () => (
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {subServices.map((service, i) => (
                     <ScrollReveal key={i} delay={i * 0.05}>
-                        <div className="group relative flex items-start gap-4 p-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/10 hover:-translate-y-1 hover:border-primary/30">
+                        <div className="group relative flex items-start gap-4 p-6 rounded-3xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/80 dark:bg-white/10 hover:-translate-y-1 hover:border-primary/30">
                             <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary shadow-inner transition-transform duration-500 group-hover:scale-110">
                                 <service.icon className="h-6 w-6" />
                             </div>
