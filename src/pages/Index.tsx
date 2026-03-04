@@ -7,6 +7,7 @@ import {
   Workflow, MessageCircle, Users, HeadphonesIcon, LineChart, Banknote,
   ArrowRight,
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import Section from '@/components/Section';
 import ScrollReveal from '@/components/ScrollReveal';
 import ServiceCard from '@/components/ServiceCard';
@@ -88,116 +89,151 @@ const Index = () => {
   }, []);
 
   const { scrollY } = useScroll();
-  const heroParallax = useTransform(scrollY, [0, 400], [0, -30]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 400], [1, 0.9]);
 
   return (
-    <>
-      {/* Hero */}
-      <div className="relative overflow-hidden px-4 py-8 md:py-16 pt-24 lg:pt-32">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div className="relative z-10 flex flex-col items-start text-left">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-primary backdrop-blur-md"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-                </span>
-                Next-Gen Healthcare Operations
-              </motion.div>
+    <div className="relative overflow-hidden">
+      {/* Cinematic Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-4 overflow-hidden">
+        {/* Background Visuals */}
+        <div className="absolute inset-0 z-0">
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={prefersReducedMotion ? {} : { opacity: 0, y: -30 }}
-                  transition={{ duration: 0.6, ease: "circOut" }}
-                >
-                  <h1 className="text-shimmer mb-6 text-5xl font-black leading-tight tracking-tighter sm:text-6xl lg:text-7xl xl:text-8xl">
-                    {heroSlides[currentSlide].tagline}
-                  </h1>
-                  <p className="max-w-xl text-lg font-medium leading-relaxed text-slate-600/90 md:text-xl">
-                    {heroSlides[currentSlide].subtitle}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
+          {/* Futuristic Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background/50" />
 
-              <div className="mt-10 flex flex-wrap gap-4">
+          {/* Animated Scanning Line */}
+          <motion.div
+            animate={{ top: ['0%', '100%', '0%'] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+            className="absolute left-0 right-0 h-1 bg-primary/20 backdrop-blur-sm z-10 shadow-[0_0_20px_rgba(14,165,233,0.3)] pointer-events-none"
+          />
+        </div>
+
+        <motion.div
+          style={{ opacity: heroOpacity, scale: heroScale }}
+          className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center"
+        >
+          {/* Left Content */}
+          <div className="text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold uppercase tracking-[0.2em] mb-6 backdrop-blur-md">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                Evolution 2030: Next-Gen Healthcare Ops
+              </span>
+
+              <h1 className="text-shimmer text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
+                {heroSlides[currentSlide].tagline}
+              </h1>
+
+              <p className="text-xl md:text-2xl text-foreground/70 mb-12 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+                {heroSlides[currentSlide].subtitle}
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
                 <Link
                   to="/services"
-                  className="rounded-2xl bg-primary px-8 py-4 font-bold text-white shadow-[0_20px_40px_-10px_rgba(176,78,36,0.3)] transition-all hover:scale-105 hover:bg-primary/90 active:scale-95"
+                  className="group relative px-8 py-4 rounded-2xl bg-primary text-white font-bold text-lg overflow-hidden shadow-2xl shadow-primary/30 transition-all hover:scale-105"
                 >
-                  Explore AI Solutions
+                  <span className="relative z-10 flex items-center gap-2">
+                    Explore AI Solutions <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 </Link>
+
                 <Link
                   to="/contacts"
-                  className="rounded-2xl border border-primary/20 bg-white/40 px-8 py-4 font-bold text-primary backdrop-blur-md transition-all hover:bg-white/60 active:scale-95"
+                  className="px-8 py-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-primary-foreground font-bold text-lg transition-all hover:bg-white/30"
                 >
                   Partner With Us
                 </Link>
-              </div>
 
-              <div className="mt-12 flex items-center gap-2">
-                {heroSlides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentSlide(i)}
-                    className={`h-1.5 transition-all duration-500 rounded-full ${i === currentSlide ? 'w-10 bg-primary' : 'w-4 bg-primary/20'}`}
-                    aria-label={`Slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="relative perspective-1000 lg:h-[600px]">
-              <motion.div
-                style={prefersReducedMotion ? undefined : { y: heroParallax }}
-                className="relative z-10 grid h-full w-full grid-cols-2 grid-rows-2 gap-4"
-              >
-                {/* Visual Dashboard Elements */}
-                <div className="glass-card flex flex-col justify-between rounded-[2.5rem] p-8 hover:ai-glow transition-all duration-500">
-                  <div className="h-12 w-12 rounded-2xl bg-primary/20 p-2.5">
-                    <TrendingUp className="h-full w-full text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-3xl font-black text-slate-800">98.5%</div>
-                    <div className="text-xs font-bold uppercase tracking-widest text-slate-500">Accuracy Rate</div>
-                  </div>
-                </div>
-                <div className="glass-card col-start-2 row-span-2 flex flex-col justify-end rounded-[2.5rem] bg-gradient-to-br from-primary/10 to-transparent p-8 shadow-2xl transition-all duration-500 hover:ai-glow">
-                  <div className="mb-auto h-20 w-20 rounded-[2rem] bg-white/60 p-5 shadow-inner">
-                    <Workflow className="h-full w-full text-primary" />
-                  </div>
-                  <div className="space-y-4">
-                    <div className="h-1 w-full rounded-full bg-slate-200">
-                      <motion.div animate={{ width: ['20%', '80%', '60%'] }} transition={{ duration: 4, repeat: Infinity }} className="h-full rounded-full bg-primary" />
+                <div className="flex -space-x-3 ml-4">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="h-10 w-10 rounded-full border-2 border-background bg-muted overflow-hidden flex items-center justify-center text-[10px] font-bold">
+                      AI-{i}
                     </div>
-                    <div className="h-1 w-[80%] rounded-full bg-slate-200">
-                      <motion.div animate={{ width: ['40%', '90%', '70%'] }} transition={{ duration: 3, repeat: Infinity, delay: 0.5 }} className="h-full rounded-full bg-primary/60" />
-                    </div>
-                    <div className="mt-4 text-xs font-bold uppercase tracking-widest text-slate-500">Processing Node Alpha</div>
+                  ))}
+                  <div className="pl-6 text-sm font-semibold text-foreground/60 flex items-center">
+                    AI-Enhanced Resource Management
                   </div>
                 </div>
-                <div className="glass-card flex flex-col justify-center gap-4 rounded-[2.5rem] border-primary/20 p-8 hover:ai-glow transition-all duration-500">
-                  <div className="flex -space-x-3">
-                    {[1, 2, 3, 4].map(i => (
-                      <div key={i} className="h-10 w-10 rounded-full border-4 border-white bg-slate-200" />
-                    ))}
-                  </div>
-                  <div className="text-sm font-bold text-slate-700">Join 4,000+ experts</div>
-                </div>
-              </motion.div>
-
-              {/* Decorative AI Ring */}
-              <div className="absolute left-1/2 top-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10 bg-gradient-to-tr from-primary/5 to-transparent blur-3xl opacity-50" />
-            </div>
+              </div>
+            </motion.div>
           </div>
+
+          {/* Right Visual Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="hidden lg:block relative"
+          >
+            <div className="absolute -inset-10 bg-primary/20 blur-[100px] rounded-full animate-pulse" />
+            <div className="relative aspect-square rounded-[3rem] border border-white/20 bg-white/5 backdrop-blur-3xl overflow-hidden shadow-2xl p-8 flex flex-col justify-center gap-8">
+              {/* Fake UI Data Visualization */}
+              <div className="space-y-4">
+                <div className="flex justify-between items-end">
+                  <h4 className="font-bold text-primary">Operational Efficiency</h4>
+                  <span className="text-xs font-mono text-primary animate-pulse">LIVE ANALYTICS</span>
+                </div>
+                <div className="h-32 flex items-end gap-2">
+                  {[40, 70, 45, 90, 65, 80, 50, 95].map((h, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ height: 0 }}
+                      animate={{ height: `${h}%` }}
+                      transition={{ duration: 1, delay: i * 0.1 }}
+                      className="flex-1 bg-gradient-to-t from-primary/20 to-primary rounded-t-sm"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">RCM Accuracy</span>
+                  <div className="text-2xl font-black text-foreground">99.8%</div>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">Scaling Rate</span>
+                  <div className="text-2xl font-black text-primary">12.5x</div>
+                </div>
+              </div>
+
+              <div className="mt-4 p-5 rounded-[2rem] bg-accent/20 border border-accent/20 flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full bg-accent/30 flex items-center justify-center">
+                  <Award className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <div className="font-bold text-foreground">Future-Proof Certified</div>
+                  <div className="text-xs text-muted-foreground">Certified ISO 2030 Healthcare Compliance</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-4">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={cn(
+                'h-1.5 transition-all duration-500 rounded-full',
+                i === currentSlide ? 'w-12 bg-primary' : 'w-4 bg-primary/20 hover:bg-primary/40'
+              )}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
         </div>
-      </div>
+      </section>
 
       {/* Services */}
       <Section>
@@ -325,7 +361,7 @@ const Index = () => {
         </ScrollReveal>
         <TestimonialCarousel testimonials={testimonials} />
       </Section>
-    </>
+    </div>
   );
 };
 

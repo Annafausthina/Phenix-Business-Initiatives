@@ -72,27 +72,24 @@ const About = () => (
     </Section>
 
     {/* Benefits */}
-    <Section className="relative bg-transparent">
-      <div className="absolute inset-0 -z-10 bg-primary/5 blur-[120px]" />
+    <Section className="bg-card">
       <ScrollReveal>
-        <h2 className="text-shimmer mb-12 text-center text-4xl font-black tracking-tighter sm:text-5xl">
-          Strategic Edge
+        <h2 className="mb-10 text-center text-2xl font-bold text-foreground sm:text-3xl">
+          Some highlights of benefits our clients enjoy
         </h2>
       </ScrollReveal>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {benefits.map((b, i) => (
           <ScrollReveal key={i} delay={i * 0.1}>
-            <div className="glass-card rounded-[2.5rem] p-8 h-full transition-all duration-500 hover:ai-glow hover:-translate-y-2">
-              <div className="mb-6 inline-flex rounded-2xl bg-primary/10 p-4 text-primary">
-                <b.icon className="h-7 w-7" />
+            <div className="rounded-2xl border border-border bg-background p-6 h-full">
+              <div className="mb-4 inline-flex rounded-xl bg-primary/10 p-3 text-primary">
+                <b.icon className="h-6 w-6" />
               </div>
-              <h3 className="mb-6 text-xl font-bold text-slate-800 tracking-tight">{b.title}</h3>
-              <ul className="space-y-4">
+              <h3 className="mb-4 text-lg font-semibold text-foreground">{b.title}</h3>
+              <ul className="space-y-2">
                 {b.items.map((item, j) => (
-                  <li key={j} className="flex items-start gap-3 text-sm font-bold text-slate-600 tracking-tight">
-                    <div className="h-5 w-5 flex items-center justify-center rounded-full bg-primary/10 text-primary shrink-0">
-                      <CheckCircle className="h-3 w-3" />
-                    </div>
+                  <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
                     {item}
                   </li>
                 ))}

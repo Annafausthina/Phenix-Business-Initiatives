@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Menu, X, Phone, Mail, Printer, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -87,189 +86,153 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <>
-      <header className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled ? "py-2" : "py-6"
-      )}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <nav className={cn(
-            "relative flex items-center justify-between rounded-[2rem] px-6 py-2 transition-all duration-500",
-            scrolled
-              ? "bg-white/40 backdrop-blur-2xl border border-white/40 shadow-2xl ai-glow"
-              : "bg-transparent border border-transparent"
-          )}>
-            {/* Logo */}
-            <Link
-              to="/"
-              className="group flex-shrink-0 transition-all duration-500 hover:scale-105"
-              aria-label="PBI Global"
-            >
-              <div className="relative">
-                <div className="absolute -inset-2 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <img src="/pbi-logo.png" alt="PBI Global" className={cn(
-                  "transition-all duration-500",
-                  scrolled ? "h-12" : "h-16"
-                )} />
-              </div>
-            </Link>
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 pt-3">
+      {/* Floating Futuristic Container */}
+      <div
+        className={cn(
+          'mx-auto max-w-7xl transition-all duration-500 rounded-[1.5rem] border border-white/20',
+          scrolled
+            ? 'bg-white/10 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] py-1.5 px-5 border-white/30'
+            : 'bg-white/5 backdrop-blur-md py-2.5 px-6 border-transparent'
+        )}
+      >
+        <div className="flex items-center justify-between h-14 md:h-16">
+          {/* Logo with Glow */}
+          <Link
+            to="/"
+            className="relative flex-shrink-0 transition-all duration-500 group"
+            aria-label="PBI Global"
+          >
+            <div className="absolute -inset-4 bg-primary/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <img src="/pbi-logo.png" alt="PBI Global" className="h-8 md:h-10 w-auto relative z-10 brightness-110 contrast-125" />
+          </Link>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => {
-                const active = location.pathname === link.to;
-                const isServices = link.label === 'Services';
+          {/* Desktop Nav - Glassy Pills */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const active = location.pathname === link.to;
+              const isServices = link.label === 'Services';
 
-                return (
-                  <div
-                    key={link.to}
-                    className="relative"
-                    onMouseLeave={() => isServices && setServicesOpen(false)}
-                  >
-                    {isServices ? (
-                      <div className="relative group">
-                        <button
-                          type="button"
-                          onMouseEnter={() => setServicesOpen(true)}
-                          className={cn(
-                            'flex items-center gap-1.5 px-5 py-2.5 rounded-2xl text-sm font-bold tracking-tight transition-all duration-300',
-                            active || servicesOpen
-                              ? 'text-primary bg-primary/10'
-                              : 'text-slate-700 hover:text-primary hover:bg-primary/5'
-                          )}
-                        >
-                          {link.label}
-                          <ChevronDown className={cn("h-4 w-4 transition-transform duration-300", servicesOpen && "rotate-180")} />
-                        </button>
-
-                        <div
-                          className={cn(
-                            'absolute left-1/2 -translate-x-1/2 top-full pt-4 w-64 transition-all duration-500 origin-top',
-                            servicesOpen
-                              ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
-                              : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'
-                          )}
-                        >
-                          <div className="overflow-hidden rounded-3xl border border-white/40 bg-white/80 backdrop-blur-2xl p-2 shadow-2xl">
-                            {servicesDropdown.map((item, idx) => (
-                              <Link
-                                key={item.label}
-                                to={item.to}
-                                className="block px-4 py-3 text-sm font-bold text-slate-700 rounded-2xl hover:bg-primary hover:text-white transition-all duration-200"
-                              >
-                                {item.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <Link
-                        to={link.to}
+              return (
+                <div
+                  key={link.to}
+                  className="relative px-1"
+                  onMouseLeave={() => isServices && setServicesOpen(false)}
+                >
+                  {isServices ? (
+                    <div className="relative group">
+                      <button
+                        onMouseEnter={() => setServicesOpen(true)}
                         className={cn(
-                          'relative px-5 py-2.5 rounded-2xl text-sm font-bold tracking-tight transition-all duration-300',
+                          'flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold tracking-tight transition-all duration-300',
                           active
-                            ? 'text-primary bg-primary/10'
-                            : 'text-slate-700 hover:text-primary hover:bg-primary/5'
+                            ? 'text-primary bg-primary/10 shadow-[0_0_15px_rgba(14,165,233,0.3)]'
+                            : 'text-foreground/80 hover:text-primary hover:bg-white/10'
                         )}
                       >
                         {link.label}
-                        {active && (
-                          <motion.div
-                            layoutId="nav-active"
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"
-                          />
+                        <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-300", servicesOpen && "rotate-180")} />
+                      </button>
+
+                      {/* Dropdown - Glassy */}
+                      <div
+                        className={cn(
+                          'absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-500 origin-top',
+                          servicesOpen ? 'visible opacity-100 translate-y-0 scale-100' : 'invisible opacity-0 -translate-y-4 scale-95'
                         )}
-                      </Link>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* CTAs */}
-            <div className="flex items-center gap-4">
-              <a
-                href="tel:8664189017"
-                className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-2xl bg-slate-100/50 text-slate-700 text-sm font-bold hover:bg-slate-200/50 transition-colors"
-              >
-                <Phone className="h-4 w-4 text-primary" />
-                <span className="hidden xl:inline">Contact Sales</span>
-              </a>
-
-              <Link
-                to="/contacts"
-                className="rounded-2xl bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95"
-              >
-                Inquiry
-              </Link>
-
-              {/* Mobile toggle */}
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden rounded-2xl p-2.5 bg-slate-100/50 text-slate-700 hover:bg-slate-200/50 transition-colors"
-                aria-label="Toggle menu"
-              >
-                {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-            </div>
-          </nav>
-        </div>
-
-        {/* ── MOBILE DRAWER ── */}
-        {mobileOpen && (
-          <div className="md:hidden bg-[hsl(182,72%,80%)] border-t border-[hsl(182,45%,68%)] shadow-lg">
-            <ul className="divide-y divide-[hsl(182,45%,72%)]">
-              {navLinks.map((link) => {
-                const active = location.pathname === link.to;
-                return (
-                  <li key={link.to}>
+                      >
+                        <div className="w-64 bg-white/10 backdrop-blur-3xl border border-white/20 shadow-2xl rounded-2xl overflow-hidden p-1.5">
+                          {servicesDropdown.map((item) => (
+                            <Link
+                              key={item.label}
+                              to={item.to}
+                              className="block px-4 py-2.5 text-xs font-semibold text-foreground/90 rounded-xl hover:bg-primary hover:text-white transition-all duration-200"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
                     <Link
                       to={link.to}
                       className={cn(
-                        'block px-5 py-3 text-sm font-semibold transition-colors',
+                        'relative flex items-center px-4 py-2 rounded-full text-xs font-bold tracking-tight transition-all duration-300',
                         active
-                          ? 'bg-orange-500 text-white'
-                          : 'text-[hsl(205,59%,16%)] hover:bg-white/40'
+                          ? 'text-primary bg-primary/10 shadow-[0_0_15px_rgba(14,165,233,0.3)]'
+                          : 'text-foreground/80 hover:text-primary hover:bg-white/10'
                       )}
                     >
                       {link.label}
+                      {active && (
+                        <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_10px_rgba(14,165,233,1)]" />
+                      )}
                     </Link>
-                  </li>
-                );
-              })}
-            </ul>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
 
-            {/* Mobile contact */}
-            <div className="px-5 py-4 bg-white/30 border-t border-[hsl(182,45%,68%)] space-y-2 text-sm text-[hsl(205,59%,20%)]">
-              <a href="tel:8664189017" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
-                <Phone className="h-4 w-4 text-orange-500" /> USA – 866-418-9017
-              </a>
-              <a href="tel:7940300403" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
-                <Phone className="h-4 w-4 text-orange-500" /> UK – 7940-300403
-              </a>
-              <a href="mailto:info@pbisglobal.com" className="flex items-center gap-2 hover:text-orange-500 transition-colors">
-                <Mail className="h-4 w-4 text-gray-500" /> info@pbisglobal.com
-              </a>
-            </div>
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="/contacts"
+              className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-white text-xs font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+              Get Started <Phone className="h-3.5 w-3.5" />
+            </Link>
 
-            {/* Mobile social */}
-            <div className="flex items-center gap-2 px-5 py-3 border-t border-[hsl(182,45%,68%)]">
-              {socialLinks.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="flex items-center justify-center h-8 w-8 rounded-full bg-[hsl(205,59%,30%)]/70 text-white hover:bg-orange-500 transition-colors duration-200"
-                >
-                  {s.icon}
-                </a>
-              ))}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden flex h-11 w-11 items-center justify-center rounded-full bg-white/10 border border-white/20 text-foreground transition-all active:scale-90"
+            >
+              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Drawer - Futuristic Vertical Panel */}
+      <div
+        className={cn(
+          'fixed inset-0 top-[4.5rem] z-40 md:hidden transition-all duration-500 p-4',
+          mobileOpen ? 'visible opacity-100' : 'invisible opacity-0'
+        )}
+      >
+        <div className="h-full bg-white/20 backdrop-blur-3xl border border-white/30 rounded-[2.5rem] shadow-2xl p-8 overflow-y-auto">
+          <nav className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={cn(
+                  'px-6 py-4 rounded-3xl text-xl font-bold transition-all duration-300',
+                  location.pathname === link.to ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'text-foreground/80 hover:bg-white/10'
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="mt-12 p-8 rounded-[2rem] bg-primary/10 border border-primary/20">
+            <h4 className="font-bold text-primary mb-2 text-lg">Contact Us</h4>
+            <div className="space-y-4">
+              <a href="tel:8664189017" className="flex items-center gap-3 font-semibold text-foreground/80">
+                <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center"><Phone className="h-5 w-5 text-primary" /></div>
+                866-418-9017
+              </a>
+              <a href="mailto:info@pbisglobal.com" className="flex items-center gap-3 font-semibold text-foreground/80">
+                <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center"><Mail className="h-5 w-5 text-primary" /></div>
+                info@pbisglobal.com
+              </a>
             </div>
           </div>
-        )}
-      </header>
-    </>
+        </div>
+      </div>
+    </header>
   );
 };
 

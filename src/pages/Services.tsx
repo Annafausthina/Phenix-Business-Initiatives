@@ -40,65 +40,68 @@ const differentiators = [
 
 const Services = () => (
   <>
-    <Hero
-      title="Advanced AI Solutions"
-      subtitle="Autonomous workflows and intelligent optimization for the modern enterprise. We don't just process data; we engineer outcomes."
-    />
+    <Hero title="Switch all your back office processes to us and we'll guarantee you'll save money!" />
 
-    <Section className="bg-transparent overflow-hidden">
-      <div className="mx-auto max-w-5xl space-y-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <ScrollReveal direction="left">
-            <div className="glass-card rounded-[2.5rem] p-10 h-full flex flex-col justify-center">
-              <h2 className="text-3xl font-black mb-6 tracking-tight text-slate-800">Intelligent Operations</h2>
-              <p className="text-slate-600 font-medium leading-relaxed">
-                As delivery experts, we value agility and so do our customers. We never stop evolving to create brilliantly simple solutions. Our services bring together our local and international expertise – all designed with our customers, and their customers in mind.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="right" delay={0.2}>
-            <div className="relative aspect-square">
-              {/* Abstract High-Tech Visual */}
-              <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full animate-pulse" />
-              <div className="relative glass-card h-full w-full rounded-[3rem] border-white/50 shadow-inner flex items-center justify-center overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
-                <Database className="w-32 h-32 text-primary opacity-40 group-hover:scale-110 transition-transform duration-700" />
-                {/* Decorative lines */}
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                <div className="absolute bottom-10 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-[shimmer_2s_infinite]" />
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
+    <Section>
+      <div className="mx-auto max-w-4xl space-y-6">
+        <ScrollReveal>
+          <p className="text-muted-foreground leading-relaxed">
+            Our services are designed to deliver value to the organizations that we serve and hence are motivated by the Success we share with our Clients.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.05}>
+          <p className="text-muted-foreground leading-relaxed">
+            PBI offers a portfolio of services designed to maximize the value for partners and clients in their business. We match our services to your precise needs to create the outcomes you want. We help our clients to optimize their organizational, managerial and production processes.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <p className="text-muted-foreground leading-relaxed">
+            As delivery experts, we value agility and so do our customers. We never stop evolving to create brilliantly simple solutions. Our services bring together our local and international expertise – all designed with our customers, and their customers in mind.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.15}>
+          <p className="text-muted-foreground leading-relaxed">
+            Our talented team of professionals operates under an effective system of internal quality management and communication that corresponds to ISO level quality. Our deliverables satisfy the highest international standards. To enhance your experience at PBI, we want to make you feel comfortable and well-prepared when accessing our services.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.2}>
+          <p className="text-muted-foreground leading-relaxed">
+            Our services are designed to support the continued expansion of our Clients and Alliance Partners, particularly in the difficult healthcare market. With organizations becoming increasingly diverse and globally competitive, our mission is to deliver the exceptional service levels using highly qualified professionals they need.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.25}>
+          <p className="text-muted-foreground leading-relaxed">
+            As a professional services firm, we know that value and trust are the main ingredients of a quality relationship — and that they are earned over more than a single engagement. No matter how big, medium or small you are, we can help you work smarter and reach your goals. PBI's wide ranging experience across healthcare/non-healthcare BPO services is grouped into the following services. Have a look at them and let's talk.
+          </p>
+        </ScrollReveal>
+      </div>
+    </Section>
 
-        {/* Service cards */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {serviceCards.map((s, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
-              <ServiceCard icon={s.icon} title={s.title} description={s.description} className="h-full" />
-            </ScrollReveal>
-          ))}
-        </div>
+    {/* Service cards */}
+    <Section className="bg-card">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {serviceCards.map((s, i) => (
+          <ScrollReveal key={i} delay={i * 0.1}>
+            <ServiceCard icon={s.icon} title={s.title} description={s.description} className="h-full" />
+          </ScrollReveal>
+        ))}
       </div>
     </Section>
 
     {/* Key Differentiators */}
-    <Section className="relative">
-      <div className="absolute inset-0 -z-10 bg-primary/5 blur-[120px]" />
+    <Section>
       <ScrollReveal>
-        <h2 className="text-shimmer mb-16 text-center text-4xl font-black tracking-tighter sm:text-5xl">
-          Core Differentiators
+        <h2 className="mb-10 text-center text-2xl font-bold text-foreground sm:text-3xl">
+          Key Differentiators
         </h2>
       </ScrollReveal>
-      <div className="mx-auto max-w-5xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mx-auto max-w-3xl">
+        <div className="grid grid-cols-1 gap-3">
           {differentiators.map((d, i) => (
-            <ScrollReveal key={i} delay={i * 0.05}>
-              <div className="group flex items-center gap-4 glass-card rounded-2xl p-6 transition-all duration-300 hover:ai-glow hover:-translate-y-1">
-                <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <CheckCircle className="h-5 w-5" />
-                </div>
-                <p className="text-sm font-bold text-slate-700 tracking-tight">{d}</p>
+            <ScrollReveal key={i} delay={i * 0.04}>
+              <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
+                <CheckCircle className="h-5 w-5 mt-0.5 shrink-0 text-primary" />
+                <p className="text-sm text-muted-foreground">{d}</p>
               </div>
             </ScrollReveal>
           ))}

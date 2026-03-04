@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import AIBackground from './AIBackground';
+import ParticleBackground from './ParticleBackground';
 
 interface AppShellProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface AppShellProps {
 
 const AppShell = ({ children }: AppShellProps) => (
   <div className="flex min-h-screen flex-col">
-    <AIBackground />
+    <ParticleBackground />
     <Navbar />
     <main className="flex-1">{children}</main>
     <Footer />
