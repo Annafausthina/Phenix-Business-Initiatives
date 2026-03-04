@@ -1,4 +1,4 @@
-import { Shield, CheckCircle } from 'lucide-react';
+import { Shield, CheckCircle, Quote } from 'lucide-react';
 import Hero from '@/components/Hero';
 import Section from '@/components/Section';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -84,13 +84,32 @@ const Security = () => (
     </Section>
 
     {/* Testimonials */}
-    <Section className="bg-card">
-      <ScrollReveal>
-        <h2 className="mb-10 text-center text-2xl font-bold text-foreground sm:text-3xl">
+    <Section className="bg-transparent mt-10">
+      <ScrollReveal variant={2}>
+        <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-[#149184]">
           What people say about us
         </h2>
       </ScrollReveal>
-      <TestimonialCarousel testimonials={testimonials} />
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 px-4">
+        {testimonials.map((t, i) => (
+          <ScrollReveal key={i} delay={i * 0.1} variant={1}>
+            <div className="h-full flex gap-4 group">
+              <Quote className="h-10 w-10 text-[#333333] shrink-0 mt-0" />
+              <div className="flex flex-col h-full">
+                <p className="text-sm md:text-base leading-relaxed text-[#555555] font-semibold mb-6">
+                  {t.quote}
+                </p>
+                <div className="mt-auto text-right">
+                  <p className="font-black text-[#222222] text-sm md:text-base tracking-tighter">
+                    {t.author}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
     </Section>
   </>
 );

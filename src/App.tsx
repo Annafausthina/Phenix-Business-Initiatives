@@ -7,6 +7,9 @@ import AppShell from "./components/AppShell";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import MedicalCoding from "./pages/MedicalCoding";
+import ClaimsManagement from "./pages/ClaimsManagement";
+import DataEntryConversion from "./pages/DataEntryConversion";
 import Security from "./pages/Security";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
@@ -24,6 +27,9 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/medical-coding" element={<MedicalCoding />} />
+            <Route path="/services/claims-management" element={<ClaimsManagement />} />
+            <Route path="/services/data-entry-conversion" element={<DataEntryConversion />} />
             <Route path="/security" element={<Security />} />
             <Route path="/contacts" element={<Contacts />} />
             <Route path="*" element={<NotFound />} />

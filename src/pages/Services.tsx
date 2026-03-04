@@ -8,23 +8,31 @@ const serviceCards = [
   {
     icon: DollarSign,
     title: 'Revenue Cycle Management',
-    description: 'PBI delivers a full range of Revenue Cycle Management proven medical billing services to streamline your billing processes and achieve fast and predictable collections...',
+    description: 'We deliver a full range of RCM services to streamline your billing processes and achieve fast and predictable collections. Our services cover the entire lifecycle from patient intake to final payment.',
   },
   {
     icon: FileCode,
     title: 'Medical Coding',
-    description: 'PBI has top notch medical coders who keep themselves on the most current coding regulations. We promise our customers 24 to 48 hour turnaround time on audit and delivery...',
+    description: 'Our top-notch medical coders maintain current knowledge of all coding regulations. We guarantee 24-48 hour turnaround on audit and delivery, ensuring full CCI and policy compliance.',
+    to: '/services/medical-coding',
+  },
+  {
+    icon: CheckCircle,
+    title: 'Claims Management',
+    description: 'Accurate and timely processing is critical for customer satisfaction. PBI follows a systematic workflow to quickly prepare healthcare claims for payment with unsurpassed precision.',
+    to: '/services/claims-management',
   },
   {
     icon: Database,
     title: 'Data Entry/Conversion Services',
-    description: 'PBI provides cost-effective data entry/conversion services at unsurpassed quality at desired turnaround time of our clients. Our medical data services are designed to simplify and streamline...',
+    description: 'We provide cost-effective data entry and conversion services at unsurpassed quality. Our solutions are designed to simplify and streamline your legacy data management.',
+    to: '/services/data-entry-conversion',
   },
 ];
 
 const differentiators = [
   'We are genuinely focused on delivering outcomes for our clients, not outputs.',
-  'A successful delivery solution – proven to be delivering \'right the first time\'.',
+  'A successful delivery solution – proven to be delivering "right the first time".',
   'Genuine end to end subject matter expertise – we understand process better.',
   'World-class communication facilities for seamless control.',
   'Flexible outsourcing models that boosts cash flow.',
@@ -82,7 +90,7 @@ const Services = () => (
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {serviceCards.map((s, i) => (
           <ScrollReveal key={i} delay={i * 0.1}>
-            <ServiceCard icon={s.icon} title={s.title} description={s.description} className="h-full" />
+            <ServiceCard icon={s.icon} title={s.title} description={s.description} to={s.to} className="h-full" />
           </ScrollReveal>
         ))}
       </div>

@@ -5,7 +5,7 @@ import {
   DollarSign, FileCode, ClipboardList, Database,
   Award, BarChart3, TrendingUp, Eye, Gem, Search, BadgeCheck,
   Workflow, MessageCircle, Users, HeadphonesIcon, LineChart, Banknote,
-  ArrowRight,
+  ArrowRight, Quote
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Section from '@/components/Section';
@@ -64,16 +64,16 @@ const segmentedApproach = [
 
 const testimonials = [
   {
-    quote: 'Having PBI on board is always reassuring because Billing is where our business risk is. You can trust them to do the job and they repeatedly deliver with a down-to-earth, no-nonsense approach." We always find their staff responsive and easy to communicate with and they understand the need for error-free billing and ensure we achieve our objectives.',
-    author: '- Physician practicing in NJ',
+    quote: "I have been working with PBI for quite awhile now and I am extremely impressed with their professional attitude and approachable manner. Healthcare is a complex industry, but PBI have consistently understood my needs. They've always got it right the first time - and on time. I simply wouldn't recommend anyone else!",
+    author: "- CEO of a Billing Company in NJ",
   },
   {
-    quote: 'PBI came highly recommended to us. Great businesses prove their worth to customers and I now recommend PBI myself! This is due to their excellent service, competitive pricing and outstanding customer care. In a world that\'s becoming so distant and digital, it\'s thoroughly refreshing to get such a personal touch.',
-    author: '- Data Entry Company in London',
+    quote: "PBI came highly recommended to us. Great businesses prove their worth to customers and I now recommend PBI myself! This is due to their excellent service, competitive pricing and outstanding customer care. In a world that's becoming so distant and digital, it's thoroughly refreshing to get such a personal touch.",
+    author: "- Data Entry Company in London",
   },
   {
-    quote: 'I have been working with PBI for quite awhile now and I am extremely impressed with their professional attitude and approachable manner. Healthcare is a complex industry, but PBI have consistently understood my needs. They\'ve always got it right the first time - and on time. I simply wouldn\'t recommend anyone else!',
-    author: '- CEO of a Billing Company in NJ',
+    quote: "Having PBI on board is always reassuring because Billing is where our business risk is. You can trust them to repeatedly deliver with a no-nonsense approach.” We always find their staff responsive and easy to communicate with and they understand the need for error-free billing and ensure we achieve our objectives.”",
+    author: "- Physician practicing in NJ",
   },
 ];
 
@@ -95,7 +95,7 @@ const Index = () => {
   return (
     <div className="relative overflow-hidden">
       {/* Cinematic Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-4 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-40 pb-12 px-4 overflow-hidden">
         {/* Background Visuals */}
         <div className="absolute inset-0 z-0">
 
@@ -175,7 +175,7 @@ const Index = () => {
             className="hidden lg:block relative"
           >
             <div className="absolute -inset-10 bg-primary/20 blur-[100px] rounded-full animate-pulse" />
-            <div className="relative aspect-square rounded-[3rem] border border-white/20 bg-white/5 backdrop-blur-3xl overflow-hidden shadow-2xl p-8 flex flex-col justify-center gap-8">
+            <div className="relative aspect-square flex flex-col justify-center gap-12">
               {/* Fake UI Data Visualization */}
               <div className="space-y-4">
                 <div className="flex justify-between items-end">
@@ -196,23 +196,23 @@ const Index = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div className="flex flex-col">
                   <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">RCM Accuracy</span>
-                  <div className="text-2xl font-black text-foreground">99.8%</div>
+                  <div className="text-3xl font-black text-foreground">99.8%</div>
                 </div>
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div className="flex flex-col">
                   <span className="text-xs text-muted-foreground uppercase tracking-wider block mb-1">Scaling Rate</span>
-                  <div className="text-2xl font-black text-primary">12.5x</div>
+                  <div className="text-3xl font-black text-primary">12.5x</div>
                 </div>
               </div>
 
-              <div className="mt-4 p-5 rounded-[2rem] bg-accent/20 border border-accent/20 flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-accent/30 flex items-center justify-center">
-                  <Award className="h-6 w-6 text-accent" />
+              <div className="mt-8 flex items-center gap-6">
+                <div className="h-14 w-14 rounded-full bg-accent/20 flex items-center justify-center">
+                  <Award className="h-8 w-8 text-accent" />
                 </div>
-                <div>
-                  <div className="font-bold text-foreground">Future-Proof Certified</div>
-                  <div className="text-xs text-muted-foreground">Certified ISO 2030 Healthcare Compliance</div>
+                <div className="flex-1">
+                  <div className="text-lg font-bold text-foreground">Future-Proof Certified</div>
+                  <div className="text-sm text-muted-foreground">Certified ISO 2030 Healthcare Compliance</div>
                 </div>
               </div>
             </div>
@@ -242,16 +242,25 @@ const Index = () => {
             We are experienced BPO professionals
           </h2>
         </ScrollReveal>
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
             <ScrollReveal
               key={i}
               delay={i * 0.1}
-              direction={i % 2 === 0 ? 'up' : 'up'}
+              direction="up"
               variant={1}
             >
-              <ServiceCard icon={s.icon} title={s.title} description={s.description}>
-                <div className="flex justify-end">
+              <div className="flex flex-col group">
+                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                  <s.icon className="h-6 w-6" />
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-foreground">
+                  {s.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground/80">
+                  {s.description}
+                </p>
+                <div className="mt-auto">
                   <Link
                     to="/services"
                     className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
@@ -259,14 +268,14 @@ const Index = () => {
                     Read More <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
-              </ServiceCard>
+              </div>
             </ScrollReveal>
           ))}
         </div>
       </Section>
 
       {/* Why choose us */}
-      <Section className="bg-card">
+      <Section>
         <ScrollReveal variant={2}>
           <h2 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
             Why clients choose us?
@@ -293,42 +302,42 @@ const Index = () => {
       </Section>
 
       {/* Who/What/Security */}
-      <Section className="bg-card">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <Section>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           <ScrollReveal variant={3} direction="left">
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <h3 className="mb-3 text-lg font-semibold text-foreground">Who we are?</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+            <div className="flex flex-col">
+              <h3 className="mb-4 text-2xl font-bold text-foreground">Who we are?</h3>
+              <p className="text-base leading-relaxed text-muted-foreground">
                 Phoenix Business Initiatives (PBI) is a young and vibrant company that aims to provide high quality services. At PBI, we strive to achieve the highest level of "Customer Satisfaction" possible. With offices in Tampa & Jacksonville, Florida the PBI's team of dedicated professionals operates from their offshore location in India to ensure services...
               </p>
-              <Link to="/about" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+              <Link to="/about" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                 Read More <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.15} variant={1}>
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <h3 className="mb-3 text-lg font-semibold text-foreground">What we do?</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+            <div className="flex flex-col">
+              <h3 className="mb-4 text-2xl font-bold text-foreground">What we do?</h3>
+              <p className="text-base leading-relaxed text-muted-foreground">
                 Our services are designed to deliver value to the organizations that we serve and hence are motivated by the success we share with our clients. We offer the following healthcare services:
               </p>
-              <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
+              <ul className="mt-6 space-y-2 text-base text-muted-foreground">
                 <li>• Revenue Cycle Management</li>
                 <li>• Medical Coding</li>
                 <li>• Data Entry / Conversion</li>
               </ul>
-              <Link to="/services" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+              <Link to="/services" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                 Read More <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.3} variant={3} direction="right">
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <h3 className="mb-3 text-lg font-semibold text-foreground">Security & HIPAA</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+            <div className="flex flex-col">
+              <h3 className="mb-4 text-2xl font-bold text-foreground">Security & HIPAA</h3>
+              <p className="text-base leading-relaxed text-muted-foreground">
                 Security is of utmost importance at PBI that is why we protect all patient data with the highest form of security possible. Our servers use the highest quality firewalls, providing greater security than a typical office server. All paper documents (if any are printed) are properly shredded, file transfer done through secure FTP, we have the technology to work...
               </p>
-              <Link to="/security" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+              <Link to="/security" className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                 Read More <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -339,12 +348,19 @@ const Index = () => {
       {/* CTA */}
       <Section>
         <ScrollReveal>
-          <div className="rounded-2xl bg-gradient-to-r from-primary to-primary/80 p-10 md:p-14 text-center text-primary-foreground">
-            <h2 className="text-2xl font-bold sm:text-3xl">We are interested in hearing from you.</h2>
-            <p className="mt-3 text-primary-foreground/80">Write about your primary interest right now!</p>
+          <div className="max-w-4xl mx-auto rounded-[1.5rem] bg-[#149184] p-6 md:p-8 text-center text-white shadow-2xl overflow-hidden relative group">
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-colors duration-700" />
+            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-48 h-48 bg-primary/20 rounded-full blur-2xl" />
+
+            <h2 className="text-2xl md:text-4xl font-black mb-3 relative z-10">
+              We are interested in hearing from you.
+            </h2>
+            <p className="text-white/90 text-base md:text-lg font-medium mb-8 relative z-10">
+              Write about your primary interest right now!
+            </p>
             <Link
               to="/contacts"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-primary-foreground px-6 py-3 text-sm font-semibold text-primary transition-transform hover:scale-[1.02] shadow-lg"
+              className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 text-sm font-bold text-[#149184] transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-white/20 relative z-10"
             >
               Submit the form! <ArrowRight className="h-4 w-4" />
             </Link>
@@ -353,13 +369,32 @@ const Index = () => {
       </Section>
 
       {/* Testimonials */}
-      <Section className="bg-card">
+      <Section className="bg-transparent mt-10">
         <ScrollReveal variant={2}>
-          <h2 className="mb-10 text-center text-2xl font-bold text-foreground sm:text-3xl">
+          <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-[#149184]">
             What people say about us
           </h2>
         </ScrollReveal>
-        <TestimonialCarousel testimonials={testimonials} />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+          {testimonials.map((t, i) => (
+            <ScrollReveal key={i} delay={i * 0.1} variant={1}>
+              <div className="h-full flex gap-4 group">
+                <Quote className="h-10 w-10 text-[#333333] shrink-0 mt-0" />
+                <div className="flex flex-col h-full">
+                  <p className="text-sm md:text-base leading-relaxed text-[#555555] font-semibold mb-6">
+                    {t.quote}
+                  </p>
+                  <div className="mt-auto text-right">
+                    <p className="font-black text-[#222222] text-sm md:text-base tracking-tighter">
+                      {t.author}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
       </Section>
     </div>
   );

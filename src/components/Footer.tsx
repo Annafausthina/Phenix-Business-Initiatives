@@ -39,10 +39,10 @@ const Footer = () => (
         <div>
           <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/50 mb-4">Services</h4>
           <ul className="space-y-2 text-sm text-primary-foreground/70">
-            <li>Revenue Cycle Management</li>
-            <li>Medical Coding</li>
-            <li>Claims Management</li>
-            <li>Data Entry/Conversion</li>
+            <li><Link to="/services" className="hover:text-primary-foreground transition-colors">Revenue Cycle Management</Link></li>
+            <li><Link to="/services/medical-coding" className="hover:text-primary-foreground transition-colors">Medical Coding</Link></li>
+            <li><Link to="/services/claims-management" className="hover:text-primary-foreground transition-colors">Claims Management</Link></li>
+            <li><Link to="/services/data-entry-conversion" className="hover:text-primary-foreground transition-colors">Data Entry/Conversion</Link></li>
           </ul>
         </div>
 

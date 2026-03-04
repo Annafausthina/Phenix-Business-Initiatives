@@ -28,19 +28,17 @@ const FeatureGrid = ({ features, columns = 3 }: FeatureGridProps) => (
         direction={i % 3 === 0 ? 'left' : i % 3 === 1 ? 'up' : 'right'}
         variant={i}
       >
-        <motion.div
-          className="group rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/20"
-          whileHover={{ y: -6, scale: 1.02 }}
-          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+        <div
+          className="group flex flex-col items-start"
         >
-          <div className="mb-3 inline-flex text-primary">
-            <f.icon className="h-5 w-5" />
+          <div className="mb-4 inline-flex text-primary">
+            <f.icon className="h-6 w-6" />
           </div>
-          <h4 className="mb-1 font-semibold text-card-foreground">{f.title}</h4>
+          <h4 className="mb-2 text-xl font-bold text-foreground">{f.title}</h4>
           {f.description && (
             <p className="text-sm leading-relaxed text-muted-foreground">{f.description}</p>
           )}
-        </motion.div>
+        </div>
       </ScrollReveal>
     ))}
   </div>
