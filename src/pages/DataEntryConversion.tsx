@@ -1,4 +1,4 @@
-import { Database, FileText, Code, Search, Globe, Layout, FileType, Zap, Shield, Image as ImageIcon, MessageSquare, Scale, Briefcase } from 'lucide-react';
+import { Database, FileText, Code, Search, Globe, Layout, FileType, Zap, Shield, Image as ImageIcon, MessageSquare, Scale, Briefcase, ScanLine } from 'lucide-react';
 import Hero from '@/components/Hero';
 import Section from '@/components/Section';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -28,44 +28,69 @@ const entryServices = [
 ];
 
 const DataEntryConversion = () => (
-    <>
-        <Hero title="Data Entry/Conversion Services" />
+    <div className="relative overflow-hidden">
+        <Hero title="Data Entry & Conversion" subtitle="Intelligent automation meets high-volume precision." />
 
         <Section>
-            <div className="mx-auto max-w-4xl space-y-8">
+            <div className="mx-auto max-w-4xl space-y-6">
                 <ScrollReveal>
+                    <div className="line-accent mb-6" />
                     <p className="text-muted-foreground leading-relaxed text-lg">
-                        PBI offers a wide range of data services such as data entry, data processing, data conversion, data mining, etc. We assure you outstanding quality at optimal costs and on-time delivery at all times. We work with a diverse set of clients from various industries including, but not limited to, healthcare, retail, finance, real estate, lodging, insurance, mortgage, yellow pages, pharmacies, etc. We offer cost-effective Data Entry/Conversion services at unsurpassed quality at desired turnaround time of our clients. We facilitate our clients with advanced and contemporary web based application technology to innovate the workflow making it more simple and sustainable.
-                    </p>
-                </ScrollReveal>
-
-                <ScrollReveal delay={0.1}>
-                    <p className="text-muted-foreground leading-relaxed">
-                        Our Data Entry/Conversion/Mining services have been widely used by a variety of clients across multi-various industries helping them to cut down on their operational costs significantly. Our diligent efforts in providing the most secure environment for client's information have been widely commended. What makes us the coveted choice is our security compliant, round-the-clock services that are nominally priced but highly reliable.
-                    </p>
-                </ScrollReveal>
-
-                <ScrollReveal delay={0.2}>
-                    <p className="text-muted-foreground leading-relaxed">
-                        Our impeccable quality of work and delivery will help you to add a lot of value to your business processes and achieve fast and predictable results for your organization. We do this with a winning combination of the best people and the most trusted technologies. Following are some of our services in this segment of business:
+                        PBI offers a wide range of data services including data entry, processing, conversion, and mining. Working with diverse industries—healthcare, retail, finance, and real estate—we deliver outstanding quality at optimal costs with advanced web-based technologies.
                     </p>
                 </ScrollReveal>
             </div>
         </Section>
 
-        <Section className="bg-card/50 backdrop-blur-sm relative overflow-hidden">
-            {/* Decorative background elements */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10" />
+        {/* ── AI Intelligent Capture ── */}
+        <section className="py-20 px-4 bg-primary/5 text-foreground overflow-hidden relative">
+            <div className="absolute top-0 right-0 p-20 opacity-10">
+                <ScanLine className="h-64 w-64 text-primary animate-[pulse_3s_ease-in-out_infinite]" />
+            </div>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="max-w-2xl">
+                    <ScrollReveal>
+                        <span className="text-primary font-black uppercase tracking-widest text-xs mb-4 block">Next-Gen Automation</span>
+                        <h2 className="text-4xl font-['Syne'] font-bold mb-6">AI-Powered <span className="text-primary underline decoration-primary/30">Intelligent Capture</span></h2>
+                        <p className="text-foreground/60 text-lg leading-relaxed mb-8">
+                            Move beyond simple OCR. Our AI/ML models understand context, extracting structured data from unformatted documents with 99.9% accuracy. We handle complex tabular data, handwritten notes, and legacy formats with ease.
+                        </p>
+                    </ScrollReveal>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {[
+                            { title: "Smart OCR", desc: "Machine learning that improves with every scan." },
+                            { title: "contextual extraction", desc: "Understanding data intent, not just text." }
+                        ].map((feature, i) => (
+                            <ScrollReveal key={i} delay={i * 0.1}>
+                                <div className="p-5 rounded-xl border border-black/5 bg-white/40 backdrop-blur-sm">
+                                    <h4 className="font-bold text-primary mb-1 uppercase text-xs tracking-wider">{feature.title}</h4>
+                                    <p className="text-foreground/40 text-xs leading-relaxed">{feature.desc}</p>
+                                </div>
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <Section>
+            <ScrollReveal>
+                <div className="text-center mb-12">
+                    <span className="tag mb-4 inline-flex">Data Services</span>
+                    <h2 className="text-foreground">Full Capability List</h2>
+                </div>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {entryServices.map((service, i) => (
                     <ScrollReveal key={i} delay={i * 0.03}>
-                        <div className="group relative flex items-center gap-4 p-5 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/10 hover:-translate-y-1 hover:border-primary/30">
-                            <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary shadow-inner transition-transform duration-500 group-hover:scale-110">
-                                <service.icon className="h-5 w-5" />
+                        <div className="group flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/30 transition-all duration-300">
+                            <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                                <service.icon className="h-4 w-4" />
                             </div>
-                            <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                            <h3 className="text-xs font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
                                 {service.title}
                             </h3>
                         </div>
@@ -73,7 +98,7 @@ const DataEntryConversion = () => (
                 ))}
             </div>
         </Section>
-    </>
+    </div>
 );
 
 export default DataEntryConversion;

@@ -13,6 +13,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import ServiceCard from '@/components/ServiceCard';
 import FeatureGrid from '@/components/FeatureGrid';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
+import ChatBox from '@/components/ChatBox';
 
 const heroSlides = [
   { tagline: 'Focus!', subtitle: 'Our work is dedicated to the prosperity of our clients!' },
@@ -274,6 +275,80 @@ const Index = () => {
         </div>
       </Section>
 
+      {/* Segmented approach */}
+      <Section>
+        <ScrollReveal variant={2}>
+          <h2 className="text-center text-2xl font-bold text-foreground sm:text-3xl">
+            Have a look through our segmented approach
+          </h2>
+        </ScrollReveal>
+        <div className="mt-12">
+          <FeatureGrid features={segmentedApproach} columns={3} />
+        </div>
+      </Section>
+
+      {/* ── AI Intelligence Section ── */}
+      <section className="py-24 px-4 bg-primary/5 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <ScrollReveal direction="left">
+            <div className="space-y-6">
+              <span className="tag inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                AI-Driven Excellence
+              </span>
+              <h2 className="text-foreground font-['Syne'] text-4xl md:text-5xl leading-tight">
+                Harnessing <span className="text-gold-shimmer">Artificial Intelligence</span> for Precision
+              </h2>
+              <p className="text-foreground/60 text-lg leading-relaxed">
+                We integrate proprietary AI algorithms into our BPO workflows to ensure unprecedented accuracy in medical coding and claims adjudication. Our systems learn from millions of data points, reducing manual error to nearly zero.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                {[
+                  { title: "Predictive Analytics", desc: "Forecasting billing cycles with 99% accuracy." },
+                  { title: "NLP Engines", desc: "Automated extraction from medical records." },
+                  { title: "Smart Verification", desc: "Instant claimant identity & eligibility checks." },
+                  { title: "Self-Learning Loops", desc: "Systems that evolve with changing regulations." }
+                ].map((item, i) => (
+                  <div key={i} className="p-5 rounded-xl border border-black/5 bg-white/40 backdrop-blur-sm group hover:border-primary/20 transition-all">
+                    <h4 className="text-primary font-bold mb-1">{item.title}</h4>
+                    <p className="text-xs text-foreground/60 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal direction="right" delay={0.2}>
+            <div className="relative">
+              {/* Decorative AI Hub Visual */}
+              <div className="aspect-square rounded-[3rem] border border-primary/20 bg-gradient-to-br from-primary/10 to-transparent flex items-center justify-center relative group overflow-hidden">
+                <div className="absolute inset-0 bg-dots opacity-20" />
+                <div className="relative z-10 text-center p-12">
+                  <div className="h-32 w-32 rounded-full border-2 border-dashed border-primary/30 flex items-center justify-center mx-auto mb-8 animate-[rotate-slow_15s_linear_infinite]">
+                    <div className="h-24 w-24 rounded-full border-2 border-primary/50 flex items-center justify-center animate-[rotate-slow_10s_linear_infinite_reverse]">
+                      <div className="h-16 w-16 rounded-full bg-primary/20 blur-sm animate-pulse" />
+                    </div>
+                  </div>
+                  <div className="stat-number text-5xl mb-2">99.9%</div>
+                  <p className="text-foreground/40 font-bold uppercase tracking-widest text-xs">AI Coding Accuracy</p>
+                </div>
+
+                {/* Floating labels */}
+                <div className="absolute top-10 left-10 p-3 rounded-lg bg-white/40 border border-black/5 backdrop-blur-md animate-float" style={{ animationDelay: '0s' }}>
+                  <span className="text-[10px] text-primary font-bold">ML_ENGINE_V2</span>
+                </div>
+                <div className="absolute bottom-20 right-10 p-3 rounded-lg bg-white/40 border border-black/5 backdrop-blur-md animate-float" style={{ animationDelay: '1.5s' }}>
+                  <span className="text-[10px] text-primary font-bold">NEURAL_SYNC_ACTIVE</span>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Why choose us */}
       <Section>
         <ScrollReveal variant={2}>
@@ -356,13 +431,13 @@ const Index = () => {
               We are interested in hearing from you.
             </h2>
             <p className="text-white/90 text-base md:text-lg font-medium mb-8 relative z-10">
-              Write about your primary interest right now!
+              Partner with us to transform your operational efficiency.
             </p>
             <Link
               to="/contacts"
               className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3 text-sm font-bold text-[#149184] transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-white/20 relative z-10"
             >
-              Submit the form! <ArrowRight className="h-4 w-4" />
+              Get Started <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </ScrollReveal>
@@ -371,31 +446,36 @@ const Index = () => {
       {/* Testimonials */}
       <Section className="bg-transparent mt-10">
         <ScrollReveal variant={2}>
-          <h2 className="mb-16 text-center text-3xl md:text-5xl lg:text-6xl font-black text-[#149184]">
-            What people say about us
-          </h2>
+          <div className="text-center mb-16">
+            <span className="tag mb-4 inline-flex">Trust & Feedback</span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-['Syne'] font-bold text-foreground">
+              What people <span className="text-gold-shimmer">say about us</span>
+            </h2>
+          </div>
         </ScrollReveal>
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
           {testimonials.map((t, i) => (
             <ScrollReveal key={i} delay={i * 0.1} variant={1}>
-              <div className="h-full flex gap-4 group">
-                <Quote className="h-10 w-10 text-[#333333] shrink-0 mt-0" />
-                <div className="flex flex-col h-full">
-                  <p className="text-sm md:text-base leading-relaxed text-[#555555] font-semibold mb-6">
-                    {t.quote}
-                  </p>
-                  <div className="mt-auto text-right">
-                    <p className="font-black text-[#222222] text-sm md:text-base tracking-tighter">
-                      {t.author}
-                    </p>
+              <div className="h-full guest-card border border-black/5 bg-white/60 backdrop-blur-sm p-8 rounded-2xl relative group hover:border-primary/30 transition-all">
+                <Quote className="h-8 w-8 text-primary/40 shrink-0 mb-6" />
+                <p className="text-base leading-relaxed text-foreground/80 italic mb-8">
+                  "{t.quote}"
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
+                    {t.author[0]}
                   </div>
+                  <p className="font-bold text-primary tracking-tight">
+                    {t.author}
+                  </p>
                 </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
       </Section>
+      <ChatBox />
     </div>
   );
 };

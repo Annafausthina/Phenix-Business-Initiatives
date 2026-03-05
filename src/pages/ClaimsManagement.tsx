@@ -1,16 +1,16 @@
-import { ClipboardCheck, FileSearch, Database, ShieldAlert, Cpu, CheckCircle2, ListChecks, UserPlus, FileText, Search, Scale, BadgeCheck, FileEdit, Undo2 } from 'lucide-react';
+import { ClipboardCheck, FileSearch, Database, ShieldAlert, Cpu, CheckCircle2, ListChecks, UserPlus, FileText, Search, Scale, BadgeCheck, FileEdit, Undo2, BrainCircuit } from 'lucide-react';
 import Hero from '@/components/Hero';
 import Section from '@/components/Section';
 import ScrollReveal from '@/components/ScrollReveal';
 
 const workflowItems = [
-    "Loading the unique pointer into the claim file so it can be loaded into the engine",
-    "Providing matches using the appropriate business rules",
-    "Manually matching any claims that cannot be automatically matched",
-    "Creating database records",
-    "Adding providers' specialty and category from the NPIDB to new provider records",
-    "Capturing the client's database's unique IDs and adding them to the claims' EDI files",
-    "Instant identification of appropriate eligibility so that provider records can move on to the next step of the auto-adjudication process"
+    "Loading the unique pointer into the claim file for engine injection",
+    "Providing matches using sophisticated business rules",
+    "Manually matching complex outliers that bypass automation",
+    "Creating synchronized database records",
+    "Automated enrichment of provider specialty categories",
+    "Capturing unique IDs for EDI file integration",
+    "Instant eligibility identification for auto-adjudication"
 ];
 
 const subServices = [
@@ -34,71 +34,70 @@ const subServices = [
 ];
 
 const ClaimsManagement = () => (
-    <>
-        <Hero title="Claims Management Services" />
+    <div className="relative overflow-hidden">
+        <Hero title="Claims Management" subtitle="Systematic workflows powered by intelligent adjudication." />
 
         <Section>
-            <div className="mx-auto max-w-4xl space-y-8">
+            <div className="mx-auto max-w-4xl space-y-8 text-center lg:text-left">
                 <ScrollReveal>
+                    <div className="line-accent mx-auto lg:ml-0" />
                     <p className="text-muted-foreground leading-relaxed text-lg">
-                        Recognizing that the accurate and timely processing and payment of claims is a critical customer satisfaction measure for TPAs and health plans alike, PBI follows a systematic workflow to quickly prepare healthcare claims for payment. PBI has professionally handled medical claims processing outsourcing tasks. With proven technical management capabilities, we are experts at gathering, analyzing, and reporting healthcare claims data. Our claims adjudication team can quickly identify and take action against inappropriate utilization of services and quality of service concerns. We assure you of HIPAA compliant security for your data.
+                        Accurate and timely processing is the ultimate satisfaction measure. PBI follows a systematic workflow to prepare healthcare claims for payment with unsurpassed precision. Our adjudication team identifies and mitigates inappropriate utilization of services through rigorous data analysis.
+                    </p>
+                </ScrollReveal>
+            </div>
+        </Section>
+
+        {/* ── AI Analytics Banner ── */}
+        <section className="py-16 px-4 bg-primary/5 border-y border-black/5">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+                <ScrollReveal direction="left" className="lg:w-1/3">
+                    <div className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                        <BrainCircuit className="h-10 w-10" />
+                    </div>
+                    <h3 className="text-2xl font-['Syne'] font-bold text-foreground mb-4">AI Claims Intelligence</h3>
+                    <p className="text-foreground/60 text-sm leading-relaxed">
+                        Our neural networks pre-screen claims to identify patterns of waste, fraud, and abuse (WFA) with 98% detection rates.
                     </p>
                 </ScrollReveal>
 
-                <ScrollReveal delay={0.1}>
-                    <p className="text-muted-foreground leading-relaxed">
-                        We understand that the payers and TPAs have set their claims engines to auto-adjudicate claims received from providers. During auto-adjudication, the claims engine verifies member/patient eligibility and provider information on a claim using the client's database. Any claims that do not match are exported to the manual adjudication queue. However, manual adjudication results in a fluctuation of quality, as manual adjudication can never be as efficient or accurate as the auto-adjudication process. We ensure to arrest this problem by matching member and provider information on claims against the client's database before the claim is even loaded into the system.
-                    </p>
-                </ScrollReveal>
-
-                <div className="mt-12 grid grid-cols-1 gap-4">
-                    {workflowItems.map((item, i) => (
-                        <ScrollReveal key={i} delay={0.2 + i * 0.05}>
-                            <div className="flex items-start gap-3 p-4 rounded-2xl bg-primary/5 border border-primary/10 group hover:bg-primary/10 transition-colors duration-300">
-                                <CheckCircle2 className="h-5 w-5 mt-1 shrink-0 text-primary transition-transform duration-300 group-hover:scale-110" />
-                                <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item}</p>
+                <div className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    {workflowItems.slice(0, 4).map((item, i) => (
+                        <ScrollReveal key={i} delay={i * 0.1}>
+                            <div className="flex items-center gap-4 p-5 rounded-xl border border-black/5 bg-white/40 hover:border-primary/20 transition-all group">
+                                <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+                                <span className="text-sm text-foreground/60 font-medium group-hover:text-foreground transition-colors">{item}</span>
                             </div>
                         </ScrollReveal>
                     ))}
                 </div>
             </div>
-        </Section>
+        </section>
 
-        <Section className="bg-card/50 backdrop-blur-sm relative overflow-hidden">
-            {/* Decorative background elements */}
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10" />
-
-            <div className="mx-auto max-w-5xl mb-12 text-center">
-                <ScrollReveal>
-                    <p className="text-lg font-medium text-foreground mb-4">
-                        You can count on us for all or any of the below services at all times.
-                    </p>
-                    <p className="text-muted-foreground">
-                        We guarantee high quality output at optimal cost within realistic deadlines.
-                    </p>
-                </ScrollReveal>
-            </div>
+        <Section>
+            <ScrollReveal>
+                <div className="text-center mb-12">
+                    <span className="tag mb-4 inline-flex">Service Matrix</span>
+                    <h2 className="text-foreground">Full Portfolio</h2>
+                </div>
+            </ScrollReveal>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {subServices.map((service, i) => (
                     <ScrollReveal key={i} delay={i * 0.05}>
-                        <div className="group relative flex items-start gap-4 p-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-500 hover:bg-white/10 hover:-translate-y-1 hover:border-primary/30">
-                            <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary shadow-inner transition-transform duration-500 group-hover:scale-110">
+                        <div className="group relative flex items-start gap-4 p-6 rounded-2xl border border-border bg-card hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+                            <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                                 <service.icon className="h-6 w-6" />
                             </div>
-                            <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors duration-300 self-center">
+                            <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors self-center">
                                 {service.title}
                             </h3>
-
-                            {/* Subtle hover effect */}
-                            <div className="absolute inset-0 rounded-3xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                         </div>
                     </ScrollReveal>
                 ))}
             </div>
         </Section>
-    </>
+    </div>
 );
 
 export default ClaimsManagement;
